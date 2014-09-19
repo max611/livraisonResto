@@ -1,6 +1,8 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
+<a href="Application/formulaire">Create a new user</a>
+
 #{form @Application.login()}
 Username : <input name="username" type="text" />
 Password : <input name="password" type="password" />

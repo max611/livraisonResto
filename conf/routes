@@ -13,3 +13,5 @@ GET     /public/                                staticDir:public
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+*		/Application/{action}					Application.{action}
+*       /Application/{action}/{<[0-9]+>id}    	Application.{action}

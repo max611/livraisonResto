@@ -22,4 +22,7 @@ public class User extends Model
 
 	@Required
 	public String email;
+
+	@Required
+	public int phonenumber;
 }

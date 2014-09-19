@@ -11,13 +11,6 @@ import models.*;
 public class Application extends Controller 
 {
     public static void index() {
-    	User user = new User();
-    	user.username = "spoder";
-    	user.firstName = "max";
-    	user.lastName = "stonge";
-    	user.email = "max@spoderman.com";
-    	user.password = "123123";
-    	user.save();
         render();
     }
 
@@ -25,6 +18,39 @@ public class Application extends Controller
     	User user = User.find("username", username).first();
     	Boolean login = user != null && user.password.equals(password);
     	Logger.info("Login: "+login);
-    	render(login);
+    	Scope.Session("username",user.username);
+    	render(login,user);
+    }
+
+    public static void create(String username, String password, String email, String firstname, String lastname, int phonenumber) {
+		User test = new User();
+		test.username = username;
+		test.firstName = firstname;
+		test.lastName = lastname;
+		test.email = email;
+		test.password = password;
+		test.phonenumber = phonenumber;
+    	
+		test.save();
+		User user = User.find("username", username).first();
+		String name = user.username;
+		render(user);
+    }
+
+        public static void update(String password, String firstname, String lastname, int phonenumber) {
+		User test = User.find("username", session("username")).first();
+
+		test.firstName = firstname;
+		test.lastName = lastname;
+		test.password = password;
+		test.phonenumber = phonenumber;
+    	
+		test.save();
+		render();
+    }
+
+    public static void formulaire() {
+
+        render();
     }
 }

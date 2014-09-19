@@ -1,0 +1,12 @@
+#{extends 'main.html' /}
+#{set title:'Create User' /}
+
+#{form @Application.create()}
+Username : <input name="username" type="text" /><br/>
+Password : <input name="password" type="password" /><br/>
+First Name : <input name="firstname" type="text" /><br/>
+Last Name : <input name="lastname" type="text" /><br/>
+Email : <input name="email" type="text" /><br/>
+Phone Number : <input name="phonenumber" type="text" /><br/>
+<input type="submit" name="Create"/>
+#{/form}
