@@ -1,7 +1,18 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'Accueil' /}
+
+#{if login}
+
+Bonjour <b>${user.username}</b> que voulez vous faire ? </br></br></br>
 
 
+<a href="Application/logout">Logout</a> </br>
+<a href="Application/account">Modifiez vos informations </a> </br>
+<a href="Application/menus">Modifiez les menus </a> </br>
+
+
+#{/if}
+#{else}
 
 <div class="main container-fluid">
 	<div class="row"><a class="btn btn-primary btn-lg" role="button" href="Application/formulaire">Create a new user</a></div><br>
@@ -20,4 +31,5 @@
 		<input class="btn btn-primary" type="submit" name="Login" />
 	</div>
 	#{/form}
+	#{/else}
 </div>

@@ -12,12 +12,17 @@ import models.*;
 public class Application extends Controller 
 {
     public static void index() {
-        render();
+    	User user = User.find("username", session.get("username") ).first();
+    	Boolean	login = user != null && user.username != null;
+    	
+        render(login,user);
     }
 
     public static void login(String username, String password) {
     	User user = User.find("username", username).first();
-    	Boolean login = user != null && user.password.equals(password);
+    	Logger.info("User: "+ user.username);
+    	Logger.info("password: "+ user.password);
+    	Boolean	login = user != null && user.password.equals(password);
     	Logger.info("Login: "+login);
     	//Scope.Session("username",user.username);
     	
@@ -47,13 +52,14 @@ public class Application extends Controller
         public static void update(String username, String password, String firstname, String lastname, int phonenumber) {
         Logger.info("username dans la session = " + session.get("username"));
         User test = User.find("username", session.get("username") ).first();
-
+        
 		test.firstName = firstname;
 		test.lastName = lastname;
 		test.password = password;
 		test.phonenumber = phonenumber;
     	
 		test.save();
+		
 		render(test);
     }
 
@@ -72,14 +78,20 @@ public class Application extends Controller
     public static void account(String username, String password, String firstname, String lastname, int phonenumber) {
         Logger.info("username dans la session = " + session.get("username"));
         User test = User.find("username", session.get("username") ).first();
-
+        /*
 		test.firstName = firstname;
 		test.lastName = lastname;
 		test.password = password;
 		test.phonenumber = phonenumber;
     	
 		test.save();
+		*/
 		render(test);
+    }
+
+    public static void menus(){
+
+    	render();
     }
 
 }
