@@ -1,5 +1,19 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'Accueil' /}
+
+#{if login}
+
+Bonjour <b>${user.username}</b> que voulez vous faire ? </br></br></br>
+
+
+<a href="Application/logout">Logout</a> </br>
+<a href="Application/account">Modifiez vos informations </a> </br>
+<a href="Application/menus">Modifiez les menus </a> </br>
+
+
+#{/if}
+#{else}
+
 
 <a href="Application/formulaire">Create a new user</a> </br>
 <a href="Application/logout">Logout</a> </br>
@@ -9,3 +23,11 @@ Username : <input name="username" type="text" />
 Password : <input name="password" type="password" />
 <input type="submit" name="Login" />
 #{/form}
+
+
+#{/else}
+
+
+
+
+

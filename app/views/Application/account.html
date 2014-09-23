@@ -1,10 +1,13 @@
 #{set title:'Account Management' /}
 
+Bonjour ${test.username} voici vos informations:</br>
+
 #{form @Application.update()}
 
-Password : <input name="password" type="password" /><br/>
-First Name : <input name="firstname" type="text" /><br/>
-Last Name : <input name="lastname" type="text" /><br/>
-Phone Number : <input name="phonenumber" type="text" /><br/>
+Password : <input name="password" type="password" value =${test.password} /><br/>
+First Name : <input name="firstname" type="text" value=${test.firstName} /><br/>
+Last Name : <input name="lastname" type="text" value=${test.lastName} /><br/>
+Phone Number : <input name="phonenumber" type="text" value=${test.phonenumber} /><br/>
 <input type="submit" name="Update"/>
+
 #{/form}
