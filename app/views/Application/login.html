@@ -1,14 +1,15 @@
+#{extends 'main.html' /}
 #{set title:'Account Menu' /}
 
-#{if login}
-	Le compte ${user.username} est connecté </br>
-	Que voulez vous faire: </br>
+<div class="main container-fluid">
+	#{if login}
+		<p>Le compte ${user.username} est connecté, que voulez vous faire: </p>
 
-	<a href="account">Modifiez vos informations </a> </br>
-	<a href="menus">Modifiez les menus </a> </br>
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="account">Modifiez vos informations </a></div></br>
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="menus">Modifiez les menus </a></div></br>
 
-#{/if}
-#{else}
-	Mauvais mot de passe
-#{/else}
-
+	#{/if}
+	#{else}
+		<p>Mauvais mot de passe</p>
+	#{/else}
+</div>
