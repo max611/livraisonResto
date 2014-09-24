@@ -1,0 +1,13 @@
+
+Bonjour dans le restaurant <b>${resto.name}</b> </br></br></br>
+
+
+#{form @Application.updateResto()}
+
+Password : <input name="password" type="password" value =${test.password} /><br/>
+First Name : <input name="firstname" type="text" value=${test.firstName} /><br/>
+Last Name : <input name="lastname" type="text" value=${test.lastName} /><br/>
+Phone Number : <input name="phonenumber" type="text" value=${test.phonenumber} /><br/>
+<input type="submit" name="Update"/>
+
+#{/form}
