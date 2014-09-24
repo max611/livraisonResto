@@ -138,5 +138,9 @@ public class Application extends Controller
         render(name);
     }
 
+    public static void passerCommande() {
+
+        render();
+    }
 
 }
