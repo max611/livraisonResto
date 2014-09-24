@@ -45,7 +45,7 @@ public class Application extends Controller
     	
 		test.save();
 		User user = User.find("username", username).first();
-		String name = user.username;
+        
 		render(user);
     }
 
@@ -93,5 +93,22 @@ public class Application extends Controller
 
     	render();
     }
+
+    public static void formulaireResto() {
+        render();
+    }
+
+    public static void manageResto(String name, String admin, String description) {
+        Restaurant resto = new Restaurant();
+        resto.name = name;
+        resto.admin = admin;
+        resto.description = description;
+
+
+        resto.save();
+
+        render(resto);
+    }
+
 
 }

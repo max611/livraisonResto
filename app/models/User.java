@@ -25,4 +25,6 @@ public class User extends Model
 
 	@Required
 	public int phonenumber;
+
+	public String type;
 }
