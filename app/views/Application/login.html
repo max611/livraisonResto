@@ -5,8 +5,16 @@
 	#{if login}
 		<p>Le compte ${user.username} est connecté, que voulez vous faire: </p>
 
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="logout">Logout</a></div></br>
 		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="account">Modifiez vos informations </a></div></br>
-		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="menus">Modifiez les menus </a></div></br>
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="manageMenus">Modifiez les menus</a></div></br>
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="formulaireResto">Créez un restaurant</a></div></br>
+
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="manageResto">Modifiez un restaurant</a></div></br>
+
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="deleteResto">Supprimer un restaurant</a></div></br>
+
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="passerCommande">Passer une commande</a></div></br>
 
 	#{/if}
 	#{else}

@@ -6,17 +6,22 @@
 Bonjour <b>${user.username}</b> que voulez vous faire ? </br></br></br>
 
 
-<a href="Application/logout">Logout</a> </br>
-<a href="Application/account">Modifiez vos informations </a> </br>
-<a href="Application/menus">Modifiez les menus </a> </br>
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="Application\logout">Logout</a></div></br>
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="Application\account">Modifiez vos informations </a></div></br>
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="Application\manageMenus">Modifiez les menus</a></div></br>
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="Application\formulaireResto">Créez un restaurant</a></div></br>
 
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="Application\manageResto">Modifiez un restaurant</a></div></br>
+
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="Application\deleteResto">Supprimer un restaurant</a></div></br>
+
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="Application\passerCommande">Passer une commande</a></div></br>
 
 #{/if}
 #{else}
 
 <div class="main container-fluid">
 	<div class="row"><a class="btn btn-primary btn-lg" role="button" href="Application/formulaire">Create a new user</a></div><br>
-	<div class="row"><a class="btn btn-primary btn-lg" role="button" href="Application/logout">Logout</a></div><br>
 	#{form @Application.login()}
 
 	<div class="form-group row">
