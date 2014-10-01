@@ -27,12 +27,7 @@ public class User extends Model
 	@Required
 	public int phonenumber;
 
-<<<<<<< HEAD
-	public String accountType;
-}
-=======
 	public String type;
-	
 	
 	//constructeur par defaut
 	public User(){
@@ -51,4 +46,3 @@ public class User extends Model
 	return find("byfirstNameAndPassword",firstName,password).first();
 	}
 }
->>>>>>> 4678f1d9f233b3a1d73820c49eb807bb3058c4c2
