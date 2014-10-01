@@ -42,4 +42,8 @@ public class User extends Model
 		password=password1;
 		email=email1;
 	}
+	public static User connect(String firstName, String password){
+	
+	return find("byfirstNameAndPassword",firstName,password).first();
+	}
 }

@@ -11,7 +11,7 @@ public class BasicTest extends UnitTest {
         assertEquals(2, 1 + 1);
     }
 */
-    //Test pour un utilisateur
+    //Test de creation d'un utilisateur
     public void createAndTestnewUser(){
     	// create a new user and save it
     	new User("john","avion123","john@gmail.com").save();
@@ -20,6 +20,20 @@ public class BasicTest extends UnitTest {
     	//Test
     	assertNotNull(john);
     	assertEquals("john@gmail.com",john.email);
+    }
+    //Test de connection d'un utilisateur
+    public void connectAsUser(){
+    	new User("john","avion123","john@gmail.com").save();
+    	//Test
+    	assertNotNull(User.connect("john","avion123"));
+    	assertNotNull(User.connect("john","error"));
+    	assertNotNull(User.connect("blaise","avion123"));
+    	
+    }
+    //methode permettant de supprimer la base de donnee apres un test
+    @Before
+    public void setup(){
+    	Fixtures.deleteDatabase();
     }
     
 }
