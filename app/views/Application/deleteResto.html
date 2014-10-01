@@ -1,12 +1,17 @@
-Quel est le nom du restaurant que vous voulez supprimer?
+#{extends 'main.html' /}
+#{set title:'Delete restaurant' /}
+
 
 <div class="main container-fluid">
+	<h1>Supprimer un restaurant</h1>
+	<p>Quel est le nom du restaurant que vous voulez supprimer?</p>
+
 	#{form @Application.confirmationRestoDel()}
 
 
 	<div class="form-group row">
 		<label class="col-sm-2">Name : </label>
-		<div class="col-sm-10"><input class="form-control" name="name" type="text" placeholder="Enter name"></div>
+		<div class="col-sm-10"><input class="form-control" name="name" type="text" placeholder="Enter name" required></div>
 	</div>
 
 
