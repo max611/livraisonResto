@@ -5,7 +5,7 @@ import javax.persistence.*;
 import play.data.validation.*;
 
 @Entity
-public class User extends Model
+public class Restaurateur extends Model
 {
 
 	@Required
@@ -25,6 +25,5 @@ public class User extends Model
 
 	@Required
 	public int phonenumber;
-
-	public String accountType;
+	
 }

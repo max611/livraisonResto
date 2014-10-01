@@ -1,13 +1,12 @@
-
 Bonjour dans le restaurant <b>${resto.name}</b> </br></br></br>
+test : ${restoName}
 
+#{form @Application.confirmationModificationResto()}
 
-#{form @Application.updateResto()}
-
-Password : <input name="password" type="password" value =${test.password} /><br/>
-First Name : <input name="firstname" type="text" value=${test.firstName} /><br/>
-Last Name : <input name="lastname" type="text" value=${test.lastName} /><br/>
-Phone Number : <input name="phonenumber" type="text" value=${test.phonenumber} /><br/>
+Nom : <input name="name" type="text" value=${resto.name} /><br/>
+Restaurateur : <input name="admin" type="text" value=${resto.admin} /><br/>
+Description : <input name="description" type="text" value=${resto.description} /><br/>
 <input type="submit" name="Update"/>
 
 #{/form}
+
