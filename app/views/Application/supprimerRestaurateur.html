@@ -1,0 +1,13 @@
+#{set title:'Supprimer Restaurateur' /}
+
+
+
+Quel restaurateur voulez vous modifier:</br></br>
+#{form @Application.deleteRestaurateur()}
+<select size="1" name="restoName">
+#{list listeResto, as:'restaurateur'}
+<option name="restoName" id="restoName" value="${restaurateur.username}">${restaurateur.username}</option>
+#{/list}
+</select>
+<input type="submit" name="Update"/>
+#{/form}

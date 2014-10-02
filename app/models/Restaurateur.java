@@ -26,4 +26,5 @@ public class Restaurateur extends Model
 	@Required
 	public int phonenumber;
 	
+	public String restaurant;
 }

@@ -46,7 +46,6 @@ public class Application extends Controller
 		test.email = email;
 		test.password = password;
 		test.phonenumber = phonenumber;
-        test.accountType = accountType;
     	
 		test.save();
 		User user = User.find("username", username).first();
@@ -210,9 +209,37 @@ public class Application extends Controller
     }
 
     public static void supprimerRestaurateur() {
-
-        render();
+        List<Restaurateur> listeResto = Restaurateur.findAll();
+        render(listeResto);
     
+    }
+
+    public static void createRestaurateur(String username, String password, String email, String firstname,
+     String lastname, int phonenumber, String restaurant) {
+        Restaurateur test = new Restaurateur();
+        test.username = username;
+        test.firstName = firstname;
+        test.lastName = lastname;
+        test.email = email;
+        test.password = password;
+        test.phonenumber = phonenumber;
+        test.restaurant = restaurant;
+
+        
+        test.save();
+
+        Restaurateur restaurateur = test;
+        render(restaurateur);
+    }
+
+    public static void deleteRestaurateur(String restoName) {
+
+        Restaurateur resto = Restaurateur.find("username", restoName ).first();
+
+        resto.delete();
+        render(restoName);
+
+
     }
 
 
