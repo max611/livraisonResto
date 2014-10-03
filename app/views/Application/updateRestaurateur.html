@@ -1,0 +1,16 @@
+Bonjour dans le compte de restaurateur <b>${resto.username}</b> </br></br></br>
+
+#{form @Application.confirmationModificationRestaurateur()}
+
+Username : <input name="username" type="text" value=${resto.username} /><br/>
+First Name : <input name="firstName" type="text" value=${resto.firstName} /><br/>
+Last Name : <input name="lastName" type="text" value=${resto.lastName} /><br/>
+
+#{if restaurant}
+Restaurant : <input name="restaurant" type="text" value=${resto.restaurant} /><br/>
+#{/if}
+
+<input type="submit" name="Update"/>
+
+#{/form}
+

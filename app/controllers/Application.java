@@ -153,7 +153,7 @@ public class Application extends Controller
     test.name = name;
     test.admin = restaurateur;
     test.description = description;
-    
+    session.put("restaurant", name);
       
     test.save();
         
@@ -164,7 +164,7 @@ public class Application extends Controller
     public static void confirmationModificationResto(String name, String admin, String description) {
     
 
-        Restaurant resto = Restaurant.find("name", "tim" ).first();
+        Restaurant resto = Restaurant.find("name", session.get("restaurant") ).first();
         
         resto.name = name;
         resto.admin = admin;
@@ -204,7 +204,8 @@ public class Application extends Controller
 
     public static void modificationRestaurateur() {
 
-        render();
+        List<Restaurateur> listeResto = Restaurateur.findAll();
+        render(listeResto);
     
     }
 
@@ -223,13 +224,20 @@ public class Application extends Controller
         test.email = email;
         test.password = password;
         test.phonenumber = phonenumber;
+
+        Boolean restaurantEmpty = true;
+
+        if(restaurant.isEmpty() ){
+        restaurantEmpty = false;
+        }
+
         test.restaurant = restaurant;
 
         
         test.save();
 
         Restaurateur restaurateur = test;
-        render(restaurateur);
+        render(restaurateur,restaurantEmpty);
     }
 
     public static void deleteRestaurateur(String restoName) {
@@ -240,6 +248,35 @@ public class Application extends Controller
         render(restoName);
 
 
+    }
+
+    public static void updateRestaurateur(String restoName) {
+
+        Restaurateur resto = Restaurateur.find("username", restoName ).first();
+        Boolean restaurant = true;
+
+        if(resto.restaurant.isEmpty() ){
+        restaurant = false;
+        }
+
+        render(resto,restaurant);
+
+    }
+
+    public static void confirmationModificationRestaurateur(String username, String firstName, String lastName, String restaurant) {
+
+        Restaurateur resto = Restaurateur.find("username", username ).first();
+        
+        
+        resto.firstName = firstName;
+        resto.lastName = lastName;
+        resto.restaurant = restaurant;
+        
+        resto.save();
+        
+        render(resto);
+    
+        
     }
 
 
