@@ -91,14 +91,18 @@ public class Application extends Controller
     }
 
     public static void formulaireResto() {
-        render();
+        List<Restaurateur> listeResto = Restaurateur.findAll();
+        render(listeResto);
+        render(listeResto);
     }
 
     public static void updateResto(String restoName) {
 
         Restaurant resto = Restaurant.find("name", restoName ).first();
+        session.put("restaurant", restoName);
+        List<Restaurateur> listeResto = Restaurateur.findAll();
         
-        render(resto);
+        render(resto,listeResto);
     }
 
     public static void manageResto(String name, String admin, String description) {
@@ -119,7 +123,8 @@ public class Application extends Controller
         }
         else{
             
-            List<Restaurant> listeResto = Restaurant.find("admin", session.get("username")).fetch();
+            //List<Restaurant> listeResto = Restaurant.find("admin", session.get("username")).fetch();
+            List<Restaurant> listeResto = Restaurant.findAll();
             render(login,listeResto);
         
         }
@@ -127,19 +132,20 @@ public class Application extends Controller
 
     public static void deleteResto() {
 
-
+        List<Restaurant> listeResto = Restaurant.findAll();
+        render(listeResto);
             
 
 
         render();
     }
 
-    public static void confirmationRestoDel(String name) {
+    public static void confirmationRestoDel(String restoName) {
 
-        Restaurant resto = Restaurant.find("name", name ).first();
+        Restaurant resto = Restaurant.find("name", restoName ).first();
 
         resto.delete();
-        render(name);
+        render(restoName);
     }
 
     public static void passerCommande() {
@@ -148,6 +154,7 @@ public class Application extends Controller
     }
 
     public static void updateRestaurant(String name, String restaurateur, String description) {
+
     Restaurant test = Restaurant.find("name", name ).first();
         
     test.name = name;
@@ -176,11 +183,11 @@ public class Application extends Controller
     
     }
 
-    public static void confirmationCreationResto(String name, String admin, String description) {
+    public static void confirmationCreationResto(String name, String restoName, String description) {
 
         Restaurant resto = new Restaurant();
         resto.name = name;
-        resto.admin = admin;
+        resto.admin = restoName;
         resto.description = description;
 
 
@@ -197,8 +204,8 @@ public class Application extends Controller
     }
 
     public static void nouveauRestaurateur() {
-
-        render();
+        List<Restaurant> listeResto = Restaurant.findAll();
+        render(listeResto   );
     
     }
 
@@ -210,26 +217,21 @@ public class Application extends Controller
     }
 
     public static void supprimerRestaurateur() {
+
         List<Restaurateur> listeResto = Restaurateur.findAll();
         render(listeResto);
     
     }
 
     public static void createRestaurateur(String username, String password, String email, String firstname,
-     String lastname, int phonenumber, String restaurant) {
+        String lastname, int phonenumber, String restaurant) {
         Restaurateur test = new Restaurateur();
         test.username = username;
         test.firstName = firstname;
         test.lastName = lastname;
         test.email = email;
-        test.password = password;
         test.phonenumber = phonenumber;
 
-        Boolean restaurantEmpty = true;
-
-        if(restaurant.isEmpty() ){
-        restaurantEmpty = false;
-        }
 
         test.restaurant = restaurant;
 
@@ -237,7 +239,7 @@ public class Application extends Controller
         test.save();
 
         Restaurateur restaurateur = test;
-        render(restaurateur,restaurantEmpty);
+        render(restaurateur,restaurant);
     }
 
     public static void deleteRestaurateur(String restoName) {

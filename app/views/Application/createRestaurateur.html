@@ -1,11 +1,12 @@
 #{extends 'main.html' /}
 #{set title:'Account created' /}
 
+
 <div class="main container-fluid">
 #{if restaurateur}
 	<p>Account created!</p>
 	<p>Le compte ${restaurateur.username} à été créé</p>
-		#{if restaurantEmpty}
+		#{if restaurant == "Aucun"}
 		<p>Le compte n'a cependant pas de restaurant.</p>
 		#{/if}	
 #{/if}

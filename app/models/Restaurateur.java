@@ -18,9 +18,6 @@ public class Restaurateur extends Model
 	public String username;
 
 	@Required
-	public String password;
-
-	@Required
 	public String email;
 
 	@Required

@@ -1,5 +1,14 @@
 Les informations de votre nouveau restaurant </br>
 
 Nom: ${resto.name}</br>
+
+#{if resto.admin == "Aucun"}
+		<p>Le compte n'a cependant pas de restaurateur.</p>
+#{/if}	
+#{else}
 Restaurateur: ${resto.admin}</br>
+#{/else}		
 Description: ${resto.description}</br>
+
+<div class="row"><a class="btn btn-primary btn-lg" role="button" href="http://localhost:9000/Application/formulaireResto">Ajouter un nouveau</a></div></br>
+<div class="row"><a class="btn btn-primary btn-lg" role="button" href="http://localhost:9000/">Accueil</a></div></br>
