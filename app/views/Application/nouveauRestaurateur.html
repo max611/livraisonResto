@@ -1,16 +1,12 @@
 #{extends 'main.html' /}
-#{set title:'Create User' /}
+#{set title:'Create Restaurateur' /}
 
 
 <div class="main container-fluid">
-	#{form @Application.create()}
+	#{form @Application.createRestaurateur()}
 	<div class="form-group row">
 		<label class="col-sm-2">Username : </label>
 		<div class="col-sm-10"><input class="form-control" name="username" type="text" placeholder="Enter username" required></div>
-	</div>
-	<div class="form-group row">
-		<label class="col-sm-2">Password : </label>
-		<div class="col-sm-10"><input class="form-control" name="password" type="password" placeholder="Enter password" required/></div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-2">First Name : </label>
@@ -29,8 +25,15 @@
 		<div class="col-sm-10"><input class="form-control" name="phonenumber" type="text" placeholder="Enter phone number" required/></div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-2">Account Type : </label>
-		<div class="col-sm-10"><input class="form-control" name="accountType" type="text" placeholder="Enter Account Type"/></div>
+		<label class="col-sm-2">Restaurant : </label>
+
+			<select size="1" name="restaurant">
+	#{list listeResto, as:'restaurant'}
+	<option name="restaurant" id="restaurant" value="${restaurant.name}">${restaurant.name}</option>
+	#{/list}
+	</select>
+
+
 	</div>
 	<div class="form-group row">
 		<input class="btn btn-primary" type="submit" name="Create"/>

@@ -1,1 +1,31 @@
-Quel resto voulez vous modifier:
+#{set title:'Confirmation' /}
+
+#{if login}
+
+Nom: ${resto.name}</br>
+Restaurateur: ${resto.admin}</br>
+Description: ${resto.description}</br>
+
+#{/if}
+
+#{else}
+
+Quel resto voulez vous modifier:</br></br>
+#{form @Application.updateResto()}
+<select size="1" name="restoName">
+#{list listeResto, as:'restaurant'}
+<option name="restoName" id="restoName" value="${restaurant.name}">${restaurant.name}</option>
+#{/list}
+</select>
+<input type="submit" name="Update"/>
+#{/form}
+
+
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+#{list listeResto, as:'restaurant'}
+<li><div class="row"><a class="btn btn-primary btn-lg" role="button" href="updateResto#${restaurant.name}">${restaurant.name}</a></div></li>
+
+#{/list}
+
+#{/else}

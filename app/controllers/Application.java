@@ -8,6 +8,9 @@ import java.util.*;
 
 import play.Logger;
 import models.*;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 public class Application extends Controller 
 {
@@ -34,7 +37,8 @@ public class Application extends Controller
  
     }
 
-    public static void create(String username, String password, String email, String firstname, String lastname, int phonenumber) {
+    public static void create(String username, String password, String email, String firstname,
+     String lastname, int phonenumber, String accountType) {
 		User test = new User();
 		test.username = username;
 		test.firstName = firstname;
@@ -78,39 +82,34 @@ public class Application extends Controller
     public static void account(String username, String password, String firstname, String lastname, int phonenumber) {
         Logger.info("username dans la session = " + session.get("username"));
         User test = User.find("username", session.get("username") ).first();
-        /*
-		test.firstName = firstname;
-		test.lastName = lastname;
-		test.password = password;
-		test.phonenumber = phonenumber;
-    	
-		test.save();
-		*/
+
 		render(test);
     }
 
     public static void manageMenus(){
-
     	render();
     }
 
     public static void formulaireResto() {
-        render();
+        List<Restaurateur> listeResto = Restaurateur.findAll();
+        render(listeResto);
+        render(listeResto);
     }
 
-    public static void updateResto(String name, String admin, String description) {
-        Restaurant resto = new Restaurant();
-        resto.name = name;
-        resto.admin = admin;
-        resto.description = description;
+    public static void updateResto(String restoName) {
 
-
-        resto.save();
-
-        render(resto);
+        Restaurant resto = Restaurant.find("name", restoName ).first();
+        session.put("restaurant", restoName);
+        List<Restaurateur> listeResto = Restaurateur.findAll();
+        
+        render(resto,listeResto);
     }
 
     public static void manageResto(String name, String admin, String description) {
+        Boolean login = name != null;
+        
+        if(login){
+
         Restaurant resto = new Restaurant();
         resto.name = name;
         resto.admin = admin;
@@ -119,28 +118,168 @@ public class Application extends Controller
 
         resto.save();
 
-        render(resto);
-
-
-        render();
+        render(resto,login);
+            
+        }
+        else{
+            
+            //List<Restaurant> listeResto = Restaurant.find("admin", session.get("username")).fetch();
+            List<Restaurant> listeResto = Restaurant.findAll();
+            render(login,listeResto);
+        
+        }
     }
 
     public static void deleteResto() {
 
+        List<Restaurant> listeResto = Restaurant.findAll();
+        render(listeResto);
+            
+
+
         render();
     }
 
-    public static void confirmationRestoDel(String name) {
+    public static void confirmationRestoDel(String restoName) {
 
-        Restaurant resto = Restaurant.find("name", name ).first();
+        Restaurant resto = Restaurant.find("name", restoName ).first();
 
         resto.delete();
-        render(name);
+        render(restoName);
     }
 
     public static void passerCommande() {
 
         render();
     }
+
+    public static void updateRestaurant(String name, String restaurateur, String description) {
+
+    Restaurant test = Restaurant.find("name", name ).first();
+        
+    test.name = name;
+    test.admin = restaurateur;
+    test.description = description;
+    session.put("restaurant", name);
+      
+    test.save();
+        
+    render(test);
+    
+    }
+
+    public static void confirmationModificationResto(String name, String admin, String description) {
+    
+
+        Restaurant resto = Restaurant.find("name", session.get("restaurant") ).first();
+        
+        resto.name = name;
+        resto.admin = admin;
+        resto.description = description;
+        
+        resto.save();
+        
+        render(resto);
+    
+    }
+
+    public static void confirmationCreationResto(String name, String restoName, String description) {
+
+        Restaurant resto = new Restaurant();
+        resto.name = name;
+        resto.admin = restoName;
+        resto.description = description;
+
+
+        resto.save();
+
+        render(resto);
+    
+    }
+
+    public static void manageRestaurateur() {
+
+        render();
+    
+    }
+
+    public static void nouveauRestaurateur() {
+        List<Restaurant> listeResto = Restaurant.findAll();
+        render(listeResto   );
+    
+    }
+
+    public static void modificationRestaurateur() {
+
+        List<Restaurateur> listeResto = Restaurateur.findAll();
+        render(listeResto);
+    
+    }
+
+    public static void supprimerRestaurateur() {
+
+        List<Restaurateur> listeResto = Restaurateur.findAll();
+        render(listeResto);
+    
+    }
+
+    public static void createRestaurateur(String username, String password, String email, String firstname,
+        String lastname, int phonenumber, String restaurant) {
+        Restaurateur test = new Restaurateur();
+        test.username = username;
+        test.firstName = firstname;
+        test.lastName = lastname;
+        test.email = email;
+        test.phonenumber = phonenumber;
+
+
+        test.restaurant = restaurant;
+
+        
+        test.save();
+
+        Restaurateur restaurateur = test;
+        render(restaurateur,restaurant);
+    }
+
+    public static void deleteRestaurateur(String restoName) {
+
+        Restaurateur resto = Restaurateur.find("username", restoName ).first();
+
+        resto.delete();
+        render(restoName);
+
+
+    }
+
+    public static void updateRestaurateur(String restoName) {
+
+        Restaurateur resto = Restaurateur.find("username", restoName ).first();
+        Boolean restaurant = true;
+
+        if(resto.restaurant.isEmpty() ){
+        restaurant = false;
+        }
+
+        render(resto,restaurant);
+
+    }
+
+    public static void confirmationModificationRestaurateur(String username, String firstName, String lastName, String restaurant) {
+
+        Restaurateur resto = Restaurateur.find("username", username ).first();
+        
+        
+        resto.firstName = firstName;
+        resto.lastName = lastName;
+        resto.restaurant = restaurant;
+        
+        resto.save();
+        
+        render(resto);
+    
+        
+    }
+
 
 }
