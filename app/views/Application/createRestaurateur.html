@@ -6,7 +6,7 @@
 #{if restaurateur}
 	<p>Account created!</p>
 	<p>Le compte ${restaurateur.username} à été créé</p>
-		#{if restaurant == "Aucun"}
+		#{if restaurant == "Aucun" || restaurant == null}
 		<p>Le compte n'a cependant pas de restaurant.</p>
 		#{/if}	
 #{/if}

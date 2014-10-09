@@ -2,7 +2,7 @@ Les informations de votre nouveau restaurant </br>
 
 Nom: ${resto.name}</br>
 
-#{if resto.admin == "Aucun"}
+#{if resto.admin == "Aucun" || resto.admin == null}
 		<p>Le compte n'a cependant pas de restaurateur.</p>
 #{/if}	
 #{else}
