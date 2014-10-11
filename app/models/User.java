@@ -1,31 +1,29 @@
 package models;
-
-import play.db.jpa.*;
-import javax.persistence.*;
-import play.data.validation.*;
+import play.modules.morphia.Model;
+import com.google.code.morphia.annotations.Entity;
 
 @Entity
 public class User extends Model
 
 {
 
-	@Required
+	//@Required
 	public String firstName;
 
-	@Required
+	//@Required
 	public String lastName;
 
-	@Required
+	//@Required
 	public String username;
 
-	@Required
+	//@Required
 	public String password;
 
-	@Required
+	//@Required
 	public String email;
 
-	@Required
-	public int phonenumber;
+	//@Required
+	public String phonenumber;
 
 	public String type;
 	
@@ -33,6 +31,18 @@ public class User extends Model
 	public User(){
 		
 	}
+
+	public User(String firstName, String lastName, String username, String password, String email, String
+		phonenumber, String type) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phonenumber = phonenumber;
+        this.type = type;
+    }
+
 	/*@Blaise 
 	Ajoiut d'un constructeur pour la classe User, utile pour la phase de Test
 	*/
