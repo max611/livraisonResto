@@ -1,14 +1,19 @@
-Les informations de votre nouveau restaurant </br>
+#{extends 'main.html' /}
+#{set title:'Account Management' /}
 
-Nom: ${resto.name}</br>
+<div class="main container-fluid">
+	<h1>Les informations de votre nouveau restaurant </h1>
 
-#{if resto.admin == "Aucun"}
-		<p>Le compte n'a cependant pas de restaurateur.</p>
-#{/if}	
-#{else}
-Restaurateur: ${resto.admin}</br>
-#{/else}		
-Description: ${resto.description}</br>
+	<p>Nom: ${resto.name}</p>
 
-<div class="row"><a class="btn btn-primary btn-lg" role="button" href="http://localhost:9000/Application/formulaireResto">Ajouter un nouveau</a></div></br>
-<div class="row"><a class="btn btn-primary btn-lg" role="button" href="http://localhost:9000/">Accueil</a></div></br>
+	#{if resto.admin == "Aucun"}
+			<p>Le compte n'a cependant pas de restaurateur.</p>
+	#{/if}	
+	#{else}
+	<p>Restaurateur: ${resto.admin}</p>
+	#{/else}		
+	<p>Description: ${resto.description}</p>
+
+	<div class="row"><a class="btn btn-primary btn-lg" role="button" href="http://localhost:9000/Application/formulaireResto">Ajouter un nouveau</a></div></br>
+	<div class="row"><a class="btn btn-primary btn-lg" role="button" href="http://localhost:9000/">Accueil</a></div></br>
+</div>
