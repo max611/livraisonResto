@@ -1,16 +1,34 @@
-Bonjour dans le compte de restaurateur <b>${resto.username}</b> </br></br></br>
+#{extends 'main.html' /}
+#{set title:'Restaurateur Management' /}
 
-#{form @Application.confirmationModificationRestaurateur()}
+<div class="main container-fluid">
 
-Username : <input name="username" type="text" value=${resto.username} /><br/>
-First Name : <input name="firstName" type="text" value=${resto.firstName} /><br/>
-Last Name : <input name="lastName" type="text" value=${resto.lastName} /><br/>
+	<h1>Bonjour dans le compte de restaurateur <b>${resto.username}</b></h1>
 
-#{if restaurant}
-Restaurant : <input name="restaurant" type="text" value=${resto.restaurant} /><br/>
-#{/if}
+	#{form @Application.confirmationModificationRestaurateur()}
 
-<input type="submit" name="Update"/>
+		<div class="form-group row">
+			<label class="col-sm-2">Username : </label>
+			<div class="col-sm-10"><input class="form-control" name="username" type="text" value=${resto.username} /></div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2">First Name : </label>
+			<div class="col-sm-10"><input class="form-control" name="firstName" type="text" value=${resto.firstName} /></div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2">Last Name : </label>
+			<div class="col-sm-10"><input class="form-control" name="lastName" type="text" value=${resto.lastName} /></div>
+		</div>
 
-#{/form}
+		#{if restaurant}
+		<div class="form-group row">
+			<label class="col-sm-2">Restaurant : </label>
+			<div class="col-sm-10"><input class="form-control" name="restaurant" type="text" value=${resto.restaurant} /></div>
+		</div>
+		#{/if}
 
+		<input class="btn btn-primary" type="submit" name="Update"/>
+
+	#{/form}
+
+</div>
