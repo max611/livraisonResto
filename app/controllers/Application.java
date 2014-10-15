@@ -205,7 +205,7 @@ public class Application extends Controller
 
     public static void nouveauRestaurateur() {
         List<Restaurant> listeResto = Restaurant.findAll();
-        render(listeResto   );
+        render(listeResto);
     
     }
 
@@ -257,11 +257,14 @@ public class Application extends Controller
         Restaurateur resto = Restaurateur.find("username", restoName ).first();
         Boolean restaurant = true;
 
+        List<Restaurant> listeResto = Restaurant.findAll();
+
+
         if(resto.restaurant.isEmpty() ){
         restaurant = false;
         }
 
-        render(resto,restaurant);
+        render(resto,restaurant,listeResto);
 
     }
 

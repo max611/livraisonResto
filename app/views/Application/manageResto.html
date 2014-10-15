@@ -24,11 +24,5 @@
 		<input class="btn btn-primary" type="submit" name="Update"/>
 	#{/form}
 
-	<ul id="list-restaurant">
-		#{list listeResto, as:'restaurant'}
-		<li><div class="row"><a class="btn btn-primary btn-lg" role="button" href="updateResto#${restaurant.name}">${restaurant.name}</a></div></li>
-		#{/list}
-	</ul>
-
 	#{/else}
 </div>

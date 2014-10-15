@@ -22,9 +22,13 @@
 
 		#{if restaurant}
 		<div class="form-group row">
-			<label class="col-sm-2">Restaurant : </label>
-			<div class="col-sm-10"><input class="form-control" name="restaurant" type="text" value=${resto.restaurant} /></div>
-		</div>
+		<label class="col-sm-2">Restaurant : </label>
+
+			<select size="1" name="restaurant">
+	#{list listeResto, as:'restaurant'}
+	<option name="restaurant" id="restaurant" value="${restaurant.name}">${restaurant.name}</option>
+	#{/list}
+	</select>
 		#{/if}
 
 		<input class="btn btn-primary" type="submit" name="Update"/>
