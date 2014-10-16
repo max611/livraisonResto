@@ -17,4 +17,7 @@ public class Restaurant extends Model
 	@Required
 	public String description;
 
+	@Required
+	public String adresse;
+
 }

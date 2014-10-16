@@ -168,14 +168,16 @@ public class Application extends Controller
     
     }
 
-    public static void confirmationModificationResto(String name, String admin, String description) {
+    public static void confirmationModificationResto(String name, String admin, String description, String adresse) {
     
 
         Restaurant resto = Restaurant.find("name", session.get("restaurant") ).first();
         
+        
         resto.name = name;
         resto.admin = admin;
         resto.description = description;
+        resto.adresse = adresse;
         
         resto.save();
         
@@ -183,12 +185,13 @@ public class Application extends Controller
     
     }
 
-    public static void confirmationCreationResto(String name, String restoName, String description) {
+    public static void confirmationCreationResto(String name, String restoName, String description, String adresse) {
 
         Restaurant resto = new Restaurant();
         resto.name = name;
         resto.admin = restoName;
         resto.description = description;
+        resto.adresse = adresse;
 
 
         resto.save();
