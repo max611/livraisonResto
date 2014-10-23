@@ -1,0 +1,10 @@
+translation=Translate in English
+titlepizza=livraison de pizzas maisons
+username=Nom d'utilisateur
+password=Mot de passe
+firstname=Prénom
+lastname=Nom de famille
+email=Adresse mail
+phonenumber=Numéro de téléphone
+accounttype=Type de compte
+valid=Valider

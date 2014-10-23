@@ -10,8 +10,7 @@ import play.Logger;
 import models.*;
 import com.google.code.morphia.annotations.Entity;
 
-public class Application extends Controller 
-{
+public class Application extends Controller {
     public static void index() {
         User user = User.find("username", session.get("username") ).first();
         Boolean login = user != null && user.username != null;
@@ -51,7 +50,7 @@ public class Application extends Controller
         render(user);
     }
 
-        public static void update(String username, String password, String firstname, String lastname, String phonenumber) {
+    public static void update(String username, String password, String firstname, String lastname, String phonenumber) {
         Logger.info("username dans la session = " + session.get("username"));
         User test = User.find("username", session.get("username") ).first();
         
@@ -153,22 +152,21 @@ public class Application extends Controller
 
     public static void updateRestaurant(String name, String restaurateur, String description) {
 
-    Restaurant test = Restaurant.find("name", name ).first();
-        
-    test.name = name;
-    test.admin = restaurateur;
-    test.description = description;
-    session.put("restaurant", name);
-      
-    test.save();
-        
-    render(test);
+        Restaurant test = Restaurant.find("name", name ).first();
+            
+        test.name = name;
+        test.admin = restaurateur;
+        test.description = description;
+        session.put("restaurant", name);
+          
+        test.save();
+            
+        render(test);
     
     }
 
     public static void confirmationModificationResto(String name, String admin, String description) {
     
-
         Restaurant resto = Restaurant.find("name", session.get("restaurant") ).first();
         
         resto.name = name;
@@ -267,17 +265,24 @@ public class Application extends Controller
 
         Restaurateur resto = Restaurateur.find("username", username ).first();
         
-        
         resto.firstName = firstName;
         resto.lastName = lastName;
         resto.restaurant = restaurant;
         
         resto.save();
         
-        render(resto);
-    
-        
+        render(resto);   
     }
 
+    public static void changeLanguage(){
+        String lang =  play.i18n.Lang.get();
 
+        if(lang.equals("en")){
+            play.i18n.Lang.change("fr");
+        }
+        else{
+            play.i18n.Lang.change("en");
+        }
+    }
 }
+
