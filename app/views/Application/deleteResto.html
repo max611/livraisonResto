@@ -12,10 +12,10 @@
 	<div class="form-group row">
 		<label class="col-sm-2">Name : </label>
 
-	<select size="1" name="restoName">
-	#{list listeResto, as:'restaurant'}
-	<option name="restoName" id="restoName" value="${restaurant.name}">${restaurant.name}</option>
-	#{/list}
+	<select class="form-control" size="1" name="restoName">
+		#{list listeResto, as:'restaurant'}
+		<option name="restoName" id="restoName" value="${restaurant.name}">${restaurant.name}</option>
+		#{/list}
 	</select>
 
 	</div>

@@ -1,31 +1,38 @@
+#{extends 'main.html' /}
 #{set title:'Confirmation' /}
 
-#{if login}
 
-Nom: ${resto.name}</br>
-Restaurateur: ${resto.admin}</br>
-Description: ${resto.description}</br>
+<div class="main container-fluid">
 
-#{/if}
+	#{if login}
 
-#{else}
+	<p>Nom: ${resto.name}</p>
+	<p>Restaurateur: ${resto.admin}</p>
+	<p>Description: ${resto.description}</p>
 
-Quel resto voulez vous modifier:</br></br>
-#{form @Application.updateResto()}
-<select size="1" name="restoName">
-#{list listeResto, as:'restaurant'}
-<option name="restoName" id="restoName" value="${restaurant.name}">${restaurant.name}</option>
-#{/list}
-</select>
-<input type="submit" name="Update"/>
-#{/form}
+	#{/if}
+
+	#{else}
+
+	<h1>Quel resto voulez vous modifier:</h1>
+	#{form @Application.updateResto()}
+		<div class="row form-group">
+			<select class="form-control" size="1" name="restoName">
+			#{list listeResto, as:'restaurant'}
+			<option name="restoName" id="restoName" value="${restaurant.name}">${restaurant.name}</option>
+			#{/list}
+			</select>
+		</div>
+		<input class="btn btn-primary" type="submit" name="Update"/>
+	#{/form}
 
 
 
-</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
-#{list listeResto, as:'restaurant'}
-<li><div class="row"><a class="btn btn-primary btn-lg" role="button" href="updateResto#${restaurant.name}">${restaurant.name}</a></div></li>
+	<!--#{list listeResto, as:'restaurant'}
+	<li>
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="updateResto#${restaurant.name}">${restaurant.name}</a></div>
+	</li>
+	#{/list}-->
 
-#{/list}
-
-#{/else}
+	#{/else}
+</div>

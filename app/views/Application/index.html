@@ -1,6 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'Accueil' /}
 
+<div class="main container-fluid">
 #{if login}
 
 Bonjour <b>${user.username}</b> que voulez vous faire ? </br></br></br>
@@ -22,7 +23,7 @@ Bonjour <b>${user.username}</b> que voulez vous faire ? </br></br></br>
 #{/if}
 #{else}
 
-<div class="main container-fluid">
+
 	<div class="row"><a class="btn btn-primary btn-lg" role="button" href="Application/formulaire">Create a new user</a></div><br>
 	#{form @Application.login()}
 
