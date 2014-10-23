@@ -1,0 +1,21 @@
+#{extends 'main.html' /}
+#{set title:'Confirmation' /}
+
+<div class="main container-fluid">
+
+
+	<h1>Quel plats voulez vous:</h1>
+	#{form @Application.ajouterPlats()}
+		<select class="form-control" size="1" name="plats">
+		#{list listePlat, as:'plats'}
+		<option name="plats" id="plats" value="${plats.name}">${plats.name}</option>
+		#{/list}
+		</select>
+		<input class="btn btn-primary" type="submit" name="Add"/>
+	#{/form}
+
+<div class="row">
+		<a class="btn btn-primary btn-lg" role="button" href="terminerCommande">Termine</a>
+	</div>
+
+</div>

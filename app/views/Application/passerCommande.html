@@ -1,6 +1,16 @@
 #{extends 'main.html' /}
-#{set title:'Commande' /}
+#{set title:'Passer Commande' /}
 
 <div class="main container-fluid">
-	<p>C'est ici que le client va choisir son restaurant dans la liste de resto créé</p>
+
+	<h1>Quel resto voulez vous:</h1>
+	#{form @Application.passerCommandeMenu()}
+		<select class="form-control" size="1" name="restoName">
+		#{list listeResto, as:'restaurant'}
+		<option name="restoName" id="restoName" value="${restaurant.name}">${restaurant.name}</option>
+		#{/list}
+		</select>
+		<input class="btn btn-primary" type="submit" name="Update"/>
+	#{/form}
+
 </div>

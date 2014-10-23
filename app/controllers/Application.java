@@ -11,9 +11,13 @@ import models.*;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Application extends Controller 
-{
+public class Application extends Controller {
+
+    static List<Plats> panier = new ArrayList<Plats>();
+
     public static void index() {
     	User user = User.find("username", session.get("username") ).first();
     	Boolean	login = user != null && user.username != null;
@@ -148,11 +152,6 @@ public class Application extends Controller
         render(restoName);
     }
 
-    public static void passerCommande() {
-
-        render();
-    }
-
     public static void updateRestaurant(String name, String restaurateur, String description) {
 
     Restaurant test = Restaurant.find("name", name ).first();
@@ -172,7 +171,7 @@ public class Application extends Controller
     
 
         Restaurant resto = Restaurant.find("name", session.get("restaurant") ).first();
-        
+
         
         resto.name = name;
         resto.admin = admin;
@@ -237,7 +236,8 @@ public class Application extends Controller
 
 
         test.restaurant = restaurant;
-
+        //Restaurateur resto = Restaurateur.find("name", restaurant ).first();
+        //resto.restaurateur = 
         
         test.save();
 
@@ -287,5 +287,80 @@ public class Application extends Controller
         
     }
 
+    public static void createMenu(String name) {
+            Menu m = new Menu();
+            m.name = name;
+        
+        m.save();
+        Menu menu = Menu.find("name", name).first();
+        session.put("resto", name);
+        render(menu);
+    }
+
+    public static void FormulaireMenu() {
+           
+        render();
+    }
+
+    public static void createPlat(String name, String menu) {
+            Plats p = new Plats();
+            p.name = name;
+        
+        p.save();
+        Plats plat = Plats.find("name", name).first();
+
+        render(plat);
+    }
+
+    public static void FormulairePlat() {
+           
+        render();
+    }
+    
+    public static void passerCommande() {
+           
+        List<Restaurant> listeResto = Restaurant.findAll();
+        render(listeResto);
+    }
+
+
+    public static void passerCommandeMenu(String restoName) {
+          
+    Restaurant r = Restaurant.find("name", restoName).first();
+
+    List<Plats> listePlat = Plats.findAll();
+        render(listePlat,r);
+
+
+    }
+
+    public static void ajouterPlats(String plats) {
+     
+
+        Plats p = Plats.find("name", plats).first();
+
+        Panier panier = new Panier();
+        panier.name = p.name;
+        panier.prix = p.prix;
+
+
+        panier.save();
+
+        List<Plats> listePlat = Plats.findAll();
+
+        render(listePlat);
+
+
+    }
+
+    public static void terminerCommande() {
+          
+        List<Panier> listePanier = Panier.findAll();
+
+
+        render(listePanier);
+
+
+    }
 
 }
