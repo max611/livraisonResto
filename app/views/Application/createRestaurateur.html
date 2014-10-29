@@ -3,14 +3,15 @@
 
 
 <div class="main container-fluid">
-#{if restaurateur}
-	<p>Account created!</p>
-	<p>Le compte ${restaurateur.username} à été créé</p>
+	#{if restaurateur}
+		<p>Account created!</p>
+		<p>Le compte ${restaurateur.username} à été créé</p>
 		#{if restaurant == "Aucun" || restaurant == null}
 		<p>Le compte n'a cependant pas de restaurant.</p>
 		#{/if}	
-#{/if}
-#{else}
-	<p>Nope :( </p>
-#{/else}
+	#{/if}
+	#{else}
+		<p>Nope :( </p>
+	#{/else}
+	<a href="/" class="btn btn-primary" role="button">Retour à la page d'accueil</a>
 </div>

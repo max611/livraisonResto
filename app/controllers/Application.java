@@ -98,6 +98,10 @@ public class Application extends Controller {
         render();
     }
 
+    public static void manageRestaurant(){
+        render();
+    }
+
     public static void formulaireResto() {
         List<Restaurateur> listeResto = Restaurateur.findAll();
         render(listeResto);
@@ -193,8 +197,6 @@ public class Application extends Controller {
         resto.admin = restoName;
         resto.description = description;
         resto.adresse = adresse;
-
-
         resto.save();
 
         render(resto);
