@@ -3,26 +3,20 @@ import play.modules.morphia.Model;
 import com.google.code.morphia.annotations.Entity;
 
 @Entity
-public class User extends Model
+public class User extends play.modules.morphia.Model
 
 {
 
-	//@Required
 	public String firstName;
 
-	//@Required
 	public String lastName;
 
-	//@Required
 	public String username;
 
-	//@Required
 	public String password;
 
-	//@Required
 	public String email;
 
-	//@Required
 	public String phonenumber;
 
 	public String type;

@@ -1,4 +1,5 @@
-translation=Translate in English
+translationfr=Traduire en Francais
+translationen=Traduire en Anglais
 titlepizza=livraison de pizzas maisons
 username=Nom d'utilisateur
 password=Mot de passe

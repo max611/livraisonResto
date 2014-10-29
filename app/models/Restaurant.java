@@ -2,8 +2,10 @@ package models;
 import play.modules.morphia.Model;
 import com.google.code.morphia.annotations.Entity;
 
+
+
 @Entity
-public class Restaurant extends Model
+public class Restaurant extends play.modules.morphia.Model
 {
 
 	//@Required
