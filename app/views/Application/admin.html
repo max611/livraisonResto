@@ -143,6 +143,14 @@
 							#{/list}
 						</ul>
 					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Adresse</strong></li>
+							#{list listeRestau, as:'restaurant'}
+							<li>${restaurant.adresse}</li>
+							#{/list}
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
