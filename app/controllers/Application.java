@@ -398,7 +398,9 @@ public class Application extends Controller {
         List<Restaurant> listeRestau = Restaurant.findAll();
         List<Restaurateur> listeResto = Restaurateur.findAll();
         List<User> listeUser = User.findAll();
-        render(listeUser, listeResto, listeRestau);
+        List<Menu> listeMenu = Menu.findAll();
+        List<Plats> listePlat = Plats.findAll();
+        render(listeUser, listeResto, listeRestau, listeMenu, listePlat);
     }
     
 }

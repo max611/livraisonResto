@@ -3,7 +3,6 @@
 
 
 <div class="main container-fluid">
-	#{form @Application.admin()}
 		<h1>Donnée de MongoDB</h1>
 		<div class="form-group row">
 			<label class="col-sm-2">Utilisateurs : </label>
@@ -154,7 +153,75 @@
 				</div>
 			</div>
 		</div>
-
-	#{/form}
+		<div class="form-group row">
+			<label class="col-sm-2">Menus : </label>
+			<div class="col-sm-10">
+				<div class="row">
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Name</strong></li>
+							#{list listeMenu, as:'menu'}
+							<li>${menu.name}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Plat</strong></li>
+							#{list listeMenu, as:'menu'}
+							<li>${menu.plat}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Resto Name</strong></li>
+							#{list listeMenu, as:'menu'}
+							<li>${menu.restoName}</li>
+							#{/list}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2">Plats : </label>
+			<div class="col-sm-10">
+				<div class="row">
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Name</strong></li>
+							#{list listePlat, as:'plat'}
+							<li>${plat.name}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Description</strong></li>
+							#{list listePlat, as:'plat'}
+							<li>${plat.description}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Prix</strong></li>
+							#{list listePlat, as:'plat'}
+							<li>${plat.prix}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Menu</strong></li>
+							#{list listePlat, as:'plat'}
+							<li>${plat.menu}</li>
+							#{/list}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 
 </div>
