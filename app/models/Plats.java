@@ -14,5 +14,7 @@ public String description;
 
 public String prix;
 
+public String menu;
+
 
 }

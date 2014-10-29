@@ -9,6 +9,12 @@
 		<div class="col-sm-10"><input class="form-control" name="name" type="text" placeholder="Enter name"></div>
 	</div>
 
+		<select class="form-control" size="1" name="resto">
+		#{list listeResto, as:'restaurant'}
+		<option name="resto" id="resto" value="${restaurant.name}">${restaurant.name}</option>
+		#{/list}
+		</select>
+
 	<div class="form-group row">
 		<input class="btn btn-primary" type="submit" name="Create"/>
 	</div>

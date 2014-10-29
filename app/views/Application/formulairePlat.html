@@ -7,7 +7,18 @@
 	<div class="form-group row">
 		<label class="col-sm-2">Name: </label>
 		<div class="col-sm-10"><input class="form-control" name="name" type="text" placeholder="Enter name"></div>
+	
+
+	<label class="col-sm-2">Prix: </label>
+		<div class="col-sm-10"><input class="form-control" name="prix" type="text" placeholder="Enter price"></div>
 	</div>
+
+	<select size="1" name="menu">
+	#{list listeMenu, as:'menu'}
+	<option name="menu" id="menu" value="${menu.name}">${menu.name}</option>
+	#{/list}
+	</select>
+
 
 	<div class="form-group row">
 		<input class="btn btn-primary" type="submit" name="Create"/>

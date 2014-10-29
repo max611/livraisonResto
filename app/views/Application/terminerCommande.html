@@ -1,11 +1,11 @@
 #{extends 'main.html' /}
 #{set title:'Confirmation' /}
 
-#{form @Application.ajouterPlats()}
-		<select class="form-control" size="1" name="plats">
+
+		<h1>Plats: </h1>
 		#{list listePanier, as:'plats'}
-		<option name="plats" id="plats" value="${plats.name}">${plats.name}</option>
+		${plats.name} ${plats.prix}$
 		#{/list}
-		</select>
-		<input class="btn btn-primary" type="submit" name="Add"/>
-	#{/form}
+		</br>
+		</br>
+		<div class="row"><a class="btn btn-primary btn-lg" role="button" href="payerCommande">Payer</a></div></br>

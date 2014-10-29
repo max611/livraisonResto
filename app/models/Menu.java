@@ -12,5 +12,6 @@ public String name;
 
 public String plat;
 
+public String restoName;
 
 }

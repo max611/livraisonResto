@@ -97,7 +97,6 @@ public class Application extends Controller {
     public static void formulaireResto() {
         List<Restaurateur> listeResto = Restaurateur.findAll();
         render(listeResto);
-        render(listeResto);
     }
 
     public static void updateResto(String restoName) {
@@ -287,9 +286,10 @@ public class Application extends Controller {
         
     }
 
-    public static void createMenu(String name) {
+    public static void createMenu(String name, String resto) {
             Menu m = new Menu();
             m.name = name;
+            m.restoName = resto;
         
         m.save();
         Menu menu = Menu.find("name", name).first();
@@ -298,14 +298,21 @@ public class Application extends Controller {
     }
 
     public static void FormulaireMenu() {
-           
-        render();
+        List<Restaurant> listeResto = Restaurant.findAll();
+        render(listeResto);
     }
 
-    public static void createPlat(String name, String menu) {
+    public static void createPlat(String name, String menu, String prix) {
+            Menu m = Menu.find("name", menu).first();
+            m.plat = name;
+            m.save();
             Plats p = new Plats();
             p.name = name;
-        
+            p.prix = prix;
+            p.menu = menu;
+
+
+
         p.save();
         Plats plat = Plats.find("name", name).first();
 
@@ -313,22 +320,24 @@ public class Application extends Controller {
     }
 
     public static void FormulairePlat() {
-           
-        render();
+        List<Menu> listeMenu = Menu.findAll();
+        render(listeMenu);
     }
     
     public static void passerCommande() {
            
         List<Restaurant> listeResto = Restaurant.findAll();
-        render(listeResto);
+        List<Menu> listeMenu = Menu.findAll();
+        render(listeMenu,listeResto);
     }
 
 
-    public static void passerCommandeMenu(String restoName) {
-          
-    Restaurant r = Restaurant.find("name", restoName).first();
+    public static void passerCommandeMenu(String menuName) {
+    Menu m = Menu.find("name", menuName).first();
+    Restaurant r = Restaurant.find("name", m.restoName).first();
 
-    List<Plats> listePlat = Plats.findAll();
+    //List<Plats> listePlat = Plats.findAll();
+    List<Plats> listePlat = Plats.find("menu", menuName).fetch();
         render(listePlat,r);
 
 
@@ -359,6 +368,25 @@ public class Application extends Controller {
 
 
         render(listePanier);
+
+
+    }
+
+
+    public static void payerCommande() {
+        int total = 0;
+        
+        List<Panier> listePanier = Panier.findAll();
+        Panier test = listePanier.get(0);
+
+
+        for (int i=0; i<listePanier.size(); i++){
+        Plats p = Plats.find("name", listePanier.get(i).name ).first();
+        //total += listePanier.get(i).prix();
+        total += Integer.parseInt(p.prix);
+        }
+
+        render(total);
 
 
     }
