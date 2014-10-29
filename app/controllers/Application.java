@@ -8,67 +8,71 @@ import java.util.*;
 
 import play.Logger;
 import models.*;
-import javax.persistence.Entity;
+import com.google.code.morphia.annotations.Entity;
+
+/*import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List;*/
 
 public class Application extends Controller {
 
     static List<Plats> panier = new ArrayList<Plats>();
 
+
     public static void index() {
-    	User user = User.find("username", session.get("username") ).first();
-    	Boolean	login = user != null && user.username != null;
-    	
+        User user = User.find("username", session.get("username") ).first();
+        Boolean login = user != null && user.username != null;
+        
         render(login,user);
     }
 
     public static void login(String username, String password) {
-    	User user = User.find("username", username).first();
-    	Logger.info("User: "+ user.username);
-    	Logger.info("password: "+ user.password);
-    	Boolean	login = user != null && user.password.equals(password);
-    	Logger.info("Login: "+login);
-    	//Scope.Session("username",user.username);
-    	
-		session.put("username", username);
-		Logger.info("test session = " + session.get("username"));
+        User user = User.find("username", username).first();
+        Logger.info("User: "+ user.username);
+        Logger.info("password: "+ user.password);
+        Boolean login = user != null && user.password.equals(password);
+        Logger.info("Login: "+login);
+        //Scope.Session("username",user.username);
+        
+        session.put("username", username);
+        Logger.info("test session = " + session.get("username"));
 
 
-    	render(login,user);
+        render(login,user);
  
     }
 
     public static void create(String username, String password, String email, String firstname,
-     String lastname, int phonenumber, String accountType) {
-		User test = new User();
-		test.username = username;
-		test.firstName = firstname;
-		test.lastName = lastname;
-		test.email = email;
-		test.password = password;
-		test.phonenumber = phonenumber;
-    	
-		test.save();
-		User user = User.find("username", username).first();
+     String lastname, String phonenumber, String accountType) {
 
-		render(user);
+        User newuser = new User();
+        newuser.username = username;
+        newuser.firstName = firstname;
+        newuser.lastName = lastname;
+        newuser.email = email;
+        newuser.password = password;
+        newuser.phonenumber = phonenumber;
+        
+        newuser.save();
+        User user = User.find("username", username).first();
+
+        render(user);
     }
 
-        public static void update(String username, String password, String firstname, String lastname, int phonenumber) {
+    public static void update(String username, String password, String firstname, String lastname, String phonenumber) {
         Logger.info("username dans la session = " + session.get("username"));
         User test = User.find("username", session.get("username") ).first();
         
-		test.firstName = firstname;
-		test.lastName = lastname;
-		test.password = password;
-		test.phonenumber = phonenumber;
-    	
-		test.save();
-		
-		render(test);
+        test.firstName = firstname;
+        test.lastName = lastname;
+        test.password = password;
+        test.phonenumber = phonenumber;
+        
+        test.save();
+        
+        render(test);
     }
 
     public static void formulaire() {
@@ -78,20 +82,20 @@ public class Application extends Controller {
 
 
     public static void logout() {
-    	session.clear();
-    	Logger.info("Session apres logout: "+ session);
-    		index();
+        session.clear();
+        Logger.info("Session apres logout: "+ session);
+            index();
     }
 
-    public static void account(String username, String password, String firstname, String lastname, int phonenumber) {
+    public static void account(String username, String password, String firstname, String lastname, String phonenumber) {
         Logger.info("username dans la session = " + session.get("username"));
         User test = User.find("username", session.get("username") ).first();
 
-		render(test);
+        render(test);
     }
 
     public static void manageMenus(){
-    	render();
+        render();
     }
 
     public static void formulaireResto() {
@@ -153,22 +157,21 @@ public class Application extends Controller {
 
     public static void updateRestaurant(String name, String restaurateur, String description) {
 
-    Restaurant test = Restaurant.find("name", name ).first();
-        
-    test.name = name;
-    test.admin = restaurateur;
-    test.description = description;
-    session.put("restaurant", name);
-      
-    test.save();
-        
-    render(test);
+        Restaurant test = Restaurant.find("name", name ).first();
+            
+        test.name = name;
+        test.admin = restaurateur;
+        test.description = description;
+        session.put("restaurant", name);
+          
+        test.save();
+            
+        render(test);
     
     }
 
     public static void confirmationModificationResto(String name, String admin, String description, String adresse) {
     
-
         Restaurant resto = Restaurant.find("name", session.get("restaurant") ).first();
 
         
@@ -225,7 +228,7 @@ public class Application extends Controller {
     }
 
     public static void createRestaurateur(String username, String password, String email, String firstname,
-        String lastname, int phonenumber, String restaurant) {
+        String lastname, String phonenumber, String restaurant) {
         Restaurateur test = new Restaurateur();
         test.username = username;
         test.firstName = firstname;
@@ -274,22 +277,28 @@ public class Application extends Controller {
 
         Restaurateur resto = Restaurateur.find("username", username ).first();
         
-        
         resto.firstName = firstName;
         resto.lastName = lastName;
         resto.restaurant = restaurant;
         
         resto.save();
         
-        render(resto);
-    
-        
+        render(resto);   
+    }
+
+    public static void changeLanguage(String language){
+        if (language.equals("en")){
+            play.i18n.Lang.change("en");
+        }
+        else{
+            play.i18n.Lang.change("fr");
+        }
     }
 
     public static void createMenu(String name, String resto) {
-            Menu m = new Menu();
-            m.name = name;
-            m.restoName = resto;
+        Menu m = new Menu();
+        m.name = name;
+        m.restoName = resto;
         
         m.save();
         Menu menu = Menu.find("name", name).first();
@@ -303,15 +312,13 @@ public class Application extends Controller {
     }
 
     public static void createPlat(String name, String menu, String prix) {
-            Menu m = Menu.find("name", menu).first();
-            m.plat = name;
-            m.save();
-            Plats p = new Plats();
-            p.name = name;
-            p.prix = prix;
-            p.menu = menu;
-
-
+        Menu m = Menu.find("name", menu).first();
+        m.plat = name;
+        m.save();
+        Plats p = new Plats();
+        p.name = name;
+        p.prix = prix;
+        p.menu = menu;
 
         p.save();
         Plats plat = Plats.find("name", name).first();
@@ -333,19 +340,17 @@ public class Application extends Controller {
 
 
     public static void passerCommandeMenu(String menuName) {
-    Menu m = Menu.find("name", menuName).first();
-    Restaurant r = Restaurant.find("name", m.restoName).first();
+        Menu m = Menu.find("name", menuName).first();
+        Restaurant r = Restaurant.find("name", m.restoName).first();
 
-    //List<Plats> listePlat = Plats.findAll();
-    List<Plats> listePlat = Plats.find("menu", menuName).fetch();
+        //List<Plats> listePlat = Plats.findAll();
+        List<Plats> listePlat = Plats.find("menu", menuName).fetch();
         render(listePlat,r);
-
 
     }
 
     public static void ajouterPlats(String plats) {
      
-
         Plats p = Plats.find("name", plats).first();
 
         Panier panier = new Panier();
@@ -358,14 +363,11 @@ public class Application extends Controller {
         List<Plats> listePlat = Plats.findAll();
 
         render(listePlat);
-
-
     }
 
     public static void terminerCommande() {
           
         List<Panier> listePanier = Panier.findAll();
-
 
         render(listePanier);
 
@@ -390,5 +392,12 @@ public class Application extends Controller {
 
 
     }
-
+    public static void admin(){
+        List<Restaurant> listeRestau = Restaurant.findAll();
+        List<Restaurateur> listeResto = Restaurateur.findAll();
+        List<User> listeUser = User.findAll();
+        render(listeUser, listeResto, listeRestau);
+    }
+    
 }
+

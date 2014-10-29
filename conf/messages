@@ -1,3 +1,17 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
+
+hello=Hello!
+back=Back
+translationfr=Translate in French
+translationen=Translate in English
+titlepizza=delivery homemade pizzas
+username=Username
+password=Password
+firstname=First Name
+lastname=Last Name
+email=Email
+phonenumber=Phone Number
+accounttype=Account Type
+valid=Validate

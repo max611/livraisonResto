@@ -2,9 +2,7 @@
 #{set title:'Resto Management' /}
 
 <div class="main container-fluid">
-
 	<h1>Bienvenue dans le restaurant <b>${resto.name}</b></h1>
-
 	#{form @Application.confirmationModificationResto()}
 
 		<div class="form-group row">
@@ -30,8 +28,9 @@
 		<div class="form-group row">
 			<label class="col-sm-2">Adresse : </label>
 			<div class="col-sm-10"><input class="form-control" name="adresse" type="text" value=${resto.adresse}></div>
-		</div>
+		</div>		
 
+	#{/form}
 
 		<input class="btn btn-primary" type="submit" name="Update"/>
 	#{/form}

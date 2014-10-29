@@ -1,16 +1,17 @@
 #{extends 'main.html' /}
 #{set title:'Supprimer Restaurateur' /}
 
-
 <div class="main container-fluid">
 
 	<h1>Quel restaurateur voulez vous modifier:</h1>
 	#{form @Application.deleteRestaurateur()}
-		<select class="form-control" size="1" name="restoName">
-		#{list listeResto, as:'restaurateur'}
-		<option name="restoName" id="restoName" value="${restaurateur.username}">${restaurateur.username}</option>
-		#{/list}
-		</select>
+		<div class="row form-group">
+			<select class="form-control" size="1" name="restoName">
+				#{list listeResto, as:'restaurateur'}
+				<option name="restoName" id="restoName" value="${restaurateur.username}">${restaurateur.username}</option>
+				#{/list}
+			</select>
+		</div>
 		<input class="btn btn-primary" type="submit" name="Update"/>
 	#{/form}
 </div>

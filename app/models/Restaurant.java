@@ -1,23 +1,33 @@
 package models;
+import play.modules.morphia.Model;
+import com.google.code.morphia.annotations.Entity;
 
-import play.db.jpa.*;
-import javax.persistence.*;
-import play.data.validation.*;
+
 
 @Entity
-public class Restaurant extends Model
+public class Restaurant extends play.modules.morphia.Model
 {
 
-	@Required
+	//@Required
 	public String name;
 
-	@Required
+	//@Required
 	public String admin;
 
-	@Required
+	//@Required
 	public String description;
 
-	@Required
+	//@Required
 	public String adresse;
+
+	public Restaurant(){
+		
+	}
+
+	public Restaurant(String name, String admin, String description) {
+        this.name = name;
+        this.admin = admin;
+        this.description = description;
+    }
 
 }

@@ -16,11 +16,13 @@
 
 	<h1>Quel resto voulez vous modifier:</h1>
 	#{form @Application.updateResto()}
-		<select class="form-control" size="1" name="restoName">
-		#{list listeResto, as:'restaurant'}
-		<option name="restoName" id="restoName" value="${restaurant.name}">${restaurant.name}</option>
-		#{/list}
-		</select>
+		<div class="row form-group">
+			<select class="form-control" size="1" name="restoName">
+				#{list listeResto, as:'restaurant'}
+				<option name="restoName" id="restoName" value="${restaurant.name}">${restaurant.name}</option>
+				#{/list}
+			</select>
+		</div>
 		<input class="btn btn-primary" type="submit" name="Update"/>
 	#{/form}
 
