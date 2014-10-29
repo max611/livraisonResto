@@ -1,0 +1,152 @@
+#{extends 'main.html' /}
+#{set title:'Admin' /}
+
+
+<div class="main container-fluid">
+	#{form @Application.admin()}
+		<h1>Donnée de MongoDB</h1>
+		<div class="form-group row">
+			<label class="col-sm-2">Utilisateurs : </label>
+			<div class="col-sm-10">
+				<div class="row">
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Username</strong></li>
+							#{list listeUser, as:'user'}
+							<li>${user.username}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>First Name</strong></li>
+							#{list listeUser, as:'user'}
+							<li>${user.firstName}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Last Name</strong></li>
+							#{list listeUser, as:'user'}
+							<li>${user.lastName}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Password</strong></li>
+							#{list listeUser, as:'user'}
+							<li>${user.password}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Email</strong></li>
+							#{list listeUser, as:'user'}
+							<li>${user.email}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Phone Number</strong></li>
+							#{list listeUser, as:'user'}
+							<li>${user.phonenumber}</li>
+							#{/list}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2">Restaurateur : </label>
+			<div class="col-sm-10">
+				<div class="row">
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Username</strong></li>
+							#{list listeResto, as:'restaurateur'}
+							<li>${restaurateur.username}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>First Name</strong></li>
+							#{list listeResto, as:'restaurateur'}
+							<li>${restaurateur.firstName}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Last Name</strong></li>
+							#{list listeResto, as:'restaurateur'}
+							<li>${restaurateur.lastName}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Email</strong></li>
+							#{list listeResto, as:'restaurateur'}
+							<li>${restaurateur.email}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Phone Number</strong></li>
+							#{list listeResto, as:'restaurateur'}
+							<li>${restaurateur.phonenumber}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Restaurant</strong></li>
+							#{list listeResto, as:'restaurateur'}
+							<li>${restaurateur.restaurant}</li>
+							#{/list}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2">Restaurants : </label>
+			<div class="col-sm-10">
+				<div class="row">
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Name</strong></li>
+							#{list listeRestau, as:'restaurant'}
+							<li>${restaurant.name}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Admin</strong></li>
+							#{list listeRestau, as:'restaurant'}
+							<li>${restaurant.admin}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Description</strong></li>
+							#{list listeRestau, as:'restaurant'}
+							<li>${restaurant.description}</li>
+							#{/list}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	#{/form}
+
+</div>

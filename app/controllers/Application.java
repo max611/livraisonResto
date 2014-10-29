@@ -36,15 +36,16 @@ public class Application extends Controller {
 
     public static void create(String username, String password, String email, String firstname,
      String lastname, String phonenumber, String accountType) {
-        User test = new User();
-        test.username = username;
-        test.firstName = firstname;
-        test.lastName = lastname;
-        test.email = email;
-        test.password = password;
-        test.phonenumber = phonenumber;
+
+        User newuser = new User();
+        newuser.username = username;
+        newuser.firstName = firstname;
+        newuser.lastName = lastname;
+        newuser.email = email;
+        newuser.password = password;
+        newuser.phonenumber = phonenumber;
         
-        test.save();
+        newuser.save();
         User user = User.find("username", username).first();
 
         render(user);
@@ -274,15 +275,22 @@ public class Application extends Controller {
         render(resto);   
     }
 
-    public static void changeLanguage(){
-        String lang =  play.i18n.Lang.get();
-
-        if(lang.equals("en")){
-            play.i18n.Lang.change("fr");
-        }
-        else{
+    public static void changeLanguage(String language){
+        if (language.equals("en")){
             play.i18n.Lang.change("en");
         }
+        else{
+            play.i18n.Lang.change("fr");
+        }
     }
+
+    public static void admin(){
+        List<Restaurant> listeRestau = Restaurant.findAll();
+        List<Restaurateur> listeResto = Restaurateur.findAll();
+        List<User> listeUser = User.findAll();
+        render(listeUser, listeResto, listeRestau);
+    }
+
+    
 }
 
