@@ -1,5 +1,4 @@
-translationfr=Traduire en Francais
-translationen=Traduire en Anglais
+translation=Traduire en anglais
 titlepizza=livraison de pizzas maisons
 username=Nom d'utilisateur
 password=Mot de passe
@@ -9,3 +8,11 @@ email=Adresse mail
 phonenumber=Numéro de téléphone
 accounttype=Type de compte
 valid=Valider
+
+enterusername=Entrer le nom d'utilisateur
+enterpassword=Entrer le mot de passe
+enterfirstname=Entrer le prénom
+enterlastname=Entrer le nom
+enteremail=Entrer l'e-mail
+enterphonenumber=Entrer le numéro de téléphone
+enteraccounttype=Entrer le type de compte

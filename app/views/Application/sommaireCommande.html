@@ -1,0 +1,40 @@
+#{extends 'main.html' /}
+#{set title:'Confirmation' /}
+
+<div class="main container-fluid">
+
+
+	<h1>Voici le récapitulatif de votre commande :</h1>
+	<div class="row">Restaurant : ${r.name}</div>
+	<div class="row">Menu : </div>
+	<ul>
+		#{list user.monPanier.lignes, as:'lignePanier'}
+		<li>${lignePanier.quantite} menus ${lignePanier.menuName.name}</li>
+		#{/list}
+	</ul>
+	<div class="row">Total de la commande : ${user.monPanier.total()}</div>
+
+	<br><h2>Détails de la livraison</h2>
+	#{form @Application.terminerCommande()}
+	<div class="form-group row">
+		<label class="col-sm-2">Date de livraison : </label>
+		<div class="col-sm-10">
+			<input type="text" class="datepicker" name="date" value="02/16/12" data-date-format="mm/dd/yy" id="datepicker">
+		</div>
+	</div>
+	<div class="form-group row input-append bootstrap-timepicker">
+		<label class="col-sm-2">Heure de livraison : </label>
+		<div class="col-sm-10"><input id="timepicker" name="hour" type="text" class="input-small"><span class="add-on"><i class="icon-time"></i></span></div>
+	</div>
+
+	<div class="form-group row">
+		<input class="btn btn-primary" type="submit" name="Create"/>
+	</div>
+	#{/form}
+
+</div>
+
+<script>
+	$('#datepicker').datepicker()
+	$('#timepicker').timepicker();
+</script>

@@ -75,8 +75,17 @@ public class Application extends Controller {
         render(test);
     }
 
+
     public static void formulaire() {
 
+        String language = play.i18n.Lang.get();
+        Logger.info("language : " + language);
+        if (language.equals("en")){
+            play.i18n.Lang.change("fr");
+        }
+        else{
+            play.i18n.Lang.change("en");
+        }
         render();
     }
 
@@ -84,7 +93,7 @@ public class Application extends Controller {
     public static void logout() {
         session.clear();
         Logger.info("Session apres logout: "+ session);
-            index();
+        index();
     }
 
     public static void account(String username, String password, String firstname, String lastname, String phonenumber) {
@@ -145,10 +154,7 @@ public class Application extends Controller {
 
         List<Restaurant> listeResto = Restaurant.findAll();
         render(listeResto);
-            
 
-
-        render();
     }
 
     public static void confirmationRestoDel(String restoName) {
@@ -210,6 +216,7 @@ public class Application extends Controller {
     }
 
     public static void nouveauRestaurateur() {
+
         List<Restaurant> listeResto = Restaurant.findAll();
         render(listeResto);
     
@@ -237,11 +244,7 @@ public class Application extends Controller {
         test.lastName = lastname;
         test.email = email;
         test.phonenumber = phonenumber;
-
-
         test.restaurant = restaurant;
-        //Restaurateur resto = Restaurateur.find("name", restaurant ).first();
-        //resto.restaurateur = 
         
         test.save();
 
@@ -255,8 +258,6 @@ public class Application extends Controller {
 
         resto.delete();
         render(restoName);
-
-
     }
 
     public static void updateRestaurateur(String restoName) {
@@ -272,7 +273,6 @@ public class Application extends Controller {
         }
 
         render(resto,restaurant,listeResto);
-
     }
 
     public static void confirmationModificationRestaurateur(String username, String firstName, String lastName, String restaurant) {
@@ -282,7 +282,6 @@ public class Application extends Controller {
         resto.firstName = firstName;
         resto.lastName = lastName;
         resto.restaurant = restaurant;
-        
         resto.save();
         
         render(resto);   
@@ -313,12 +312,13 @@ public class Application extends Controller {
         render(listeResto);
     }
 
-    public static void createPlat(String name, String menu, String prix) {
+    public static void createPlat(String name, String description, String menu, int prix) {
         Menu m = Menu.find("name", menu).first();
         m.plat = name;
         m.save();
         Plats p = new Plats();
         p.name = name;
+        p.description = description;
         p.prix = prix;
         p.menu = menu;
 
@@ -329,42 +329,70 @@ public class Application extends Controller {
     }
 
     public static void FormulairePlat() {
-        List<Menu> listeMenu = Menu.findAll();
+        List<Menu> listeMenuRev = Menu.findAll();
+        List<Menu> listeMenu = new ArrayList<Menu>();
+        int total = listeMenuRev.size()-1;
+
+        for(int i = 0 ; i <= total; i++){
+            listeMenu.add(listeMenuRev.get(total-i));
+            Logger.info("item : "+ listeMenuRev.get(i));            
+        }
+
         render(listeMenu);
     }
     
     public static void passerCommande() {
            
         List<Restaurant> listeResto = Restaurant.findAll();
-        List<Menu> listeMenu = Menu.findAll();
-        render(listeMenu,listeResto);
+        render(listeResto);
     }
 
 
-    public static void passerCommandeMenu(String menuName) {
-        Menu m = Menu.find("name", menuName).first();
-        Restaurant r = Restaurant.find("name", m.restoName).first();
+    public static void passerCommandeMenu(String restoName) {
+        Restaurant r = Restaurant.find("name", restoName).first();
+        List<Menu> listeMenus = Menu.find("restoName", r.name).asList();
 
-        //List<Plats> listePlat = Plats.findAll();
-        List<Plats> listePlat = Plats.find("menu", menuName).fetch();
-        render(listePlat,r);
+        render(listeMenus,r);
+    }
+    
+    public static void saveAndAddCommandeMenu(String restoName, String menuName, int quantite) {
+        Logger.info("infos param = " + restoName + "  "+menuName+"  "+quantite);
+        Restaurant r = Restaurant.find("name", restoName).first();
+        List<Menu> listeMenus = Menu.find("restoName", restoName).asList();
+        Logger.info("listeMenus = " + listeMenus.get(0).name);
 
+        User user = User.find("username", session.get("username") ).first();
+
+        LignePanier newLigne = new LignePanier();
+        Menu menuSave = Menu.find("name", menuName).first();
+        newLigne.menuName = menuSave;
+        newLigne.quantite = quantite;
+
+        user.monPanier.lignes.add(newLigne);
+        user.save();
+
+        Logger.info("monPanier = " +  user.monPanier.lignes.get(0).menuName.name);
+        Logger.info("listeLignePanier = " +  user.monPanier.lignes);
+        render(listeMenus,r);
     }
 
-    public static void ajouterPlats(String plats) {
-     
-        Plats p = Plats.find("name", plats).first();
+    public static void sommaireCommande(Restaurant restoName) {
 
+        Restaurant r = Restaurant.find("name", restoName).first();
+        User user = User.find("username", session.get("username") ).first();
+        //List<LignePanier> listeLignePanier = user.monPanier.lignes;
+        Logger.info("listeLignePanier = " +  user.monPanier.lignes);
+
+        /*restaurant r = Restaurant.find('name', restoName).first();
         Panier panier = new Panier();
         panier.name = p.name;
         panier.prix = p.prix;
 
-
         panier.save();
 
-        List<Plats> listePlat = Plats.findAll();
+        List<Plats> listePlat = Plats.findAll();*/
 
-        render(listePlat);
+        render(r, user);
     }
 
     public static void terminerCommande() {
@@ -372,7 +400,6 @@ public class Application extends Controller {
         List<Panier> listePanier = Panier.findAll();
 
         render(listePanier);
-
 
     }
 
@@ -384,23 +411,32 @@ public class Application extends Controller {
         Panier test = listePanier.get(0);
 
 
-        for (int i=0; i<listePanier.size(); i++){
-        Plats p = Plats.find("name", listePanier.get(i).name ).first();
-        //total += listePanier.get(i).prix();
-        total += Integer.parseInt(p.prix);
-        }
+        /*for (int i=0; i<listePanier.size(); i++){
+            Plats p = Plats.find("name", listePanier.get(i).name ).first();
+            //total += listePanier.get(i).prix();
+            total += Integer.parseInt(p.prix);
+        }*/
 
         render(total);
 
 
     }
+
     public static void admin(){
         List<Restaurant> listeRestau = Restaurant.findAll();
         List<Restaurateur> listeResto = Restaurateur.findAll();
         List<User> listeUser = User.findAll();
         List<Menu> listeMenu = Menu.findAll();
         List<Plats> listePlat = Plats.findAll();
-        render(listeUser, listeResto, listeRestau, listeMenu, listePlat);
+        List<LignePanier> listeLignePanier = LignePanier.findAll();
+        render(listeUser, listeResto, listeRestau, listeMenu, listePlat, listeLignePanier);
+    }
+
+    public static void deleteLignePanier(){
+        List<LignePanier> listeLignePanier = LignePanier.findAll();
+        LignePanier lp = listeLignePanier.get(0);
+        lp.delete();
+        render();
     }
     
 }

@@ -6,19 +6,14 @@ import com.google.code.morphia.annotations.Entity;
 public class Restaurateur extends play.modules.morphia.Model
 {
 
-	//@Required
 	public String firstName;
 
-	//@Required
 	public String lastName;
 
-	//@Required
 	public String username;
 
-	//@Required
 	public String email;
 
-	//@Required
 	public String phonenumber;
 	
 	public String restaurant;

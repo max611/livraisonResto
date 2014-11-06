@@ -12,4 +12,8 @@ public String plat;
 
 public String restoName;
 
+public Menu(){
+	
+}
+
 }

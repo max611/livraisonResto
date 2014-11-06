@@ -5,9 +5,9 @@
 
 	<h1>Quel resto voulez vous:</h1>
 	#{form @Application.passerCommandeMenu()}
-		<select class="form-control" size="1" name="menuName">
-			#{list listeMenu, as:'menu'}
-			<option name="menuName" id="menuName" value="${menu.name}">${menu.name}</option>
+		<select class="form-control" size="1" name="restoName">
+			#{list listeResto, as:'resto'}
+			<option name="restoName" id="restoName" value="${resto.name}">${resto.name}</option>
 			#{/list}
 		</select>
 		<input class="btn btn-primary" type="submit" name="Update"/>

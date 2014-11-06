@@ -1,5 +1,4 @@
-translationen=Translate in English
-translationfr=Translate in French
+translation=Translate in French
 titlepizza=delivery homemade pizzas
 username=Username
 password=Password
@@ -9,3 +8,11 @@ email=Email
 phonenumber=Phone Number
 accounttype=Account Type
 valid=Validate
+
+enterusername=Enter Username
+enterpassword=Enter Password
+enterfirstname=Enter First Name
+enterlastname=Enter Last Name
+enteremail=Enter Email
+enterphonenumber=Enter Phone Number
+enteraccounttype=Enter Account Type

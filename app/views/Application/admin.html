@@ -157,7 +157,7 @@
 			<label class="col-sm-2">Menus : </label>
 			<div class="col-sm-10">
 				<div class="row">
-					<div class="col-sm-2">
+					<div class="col-sm-4">
 						<ul>
 							<li><strong>Name</strong></li>
 							#{list listeMenu, as:'menu'}
@@ -165,7 +165,7 @@
 							#{/list}
 						</ul>
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-4">
 						<ul>
 							<li><strong>Plat</strong></li>
 							#{list listeMenu, as:'menu'}
@@ -173,7 +173,7 @@
 							#{/list}
 						</ul>
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-4">
 						<ul>
 							<li><strong>Resto Name</strong></li>
 							#{list listeMenu, as:'menu'}
@@ -217,6 +217,60 @@
 							<li><strong>Menu</strong></li>
 							#{list listePlat, as:'plat'}
 							<li>${plat.menu}</li>
+							#{/list}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2">Lignes panier : </label>
+			<div class="col-sm-10">
+				<div class="row">
+					<div class="col-sm-4">
+						<ul>
+							<li><strong>Nom menu</strong></li>
+							#{list listeLignePanier, as:'lignePanier'}
+							<li>${lignePanier.menuName}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-4">
+						<ul>
+							<li><strong>Quantité</strong></li>
+							#{list listeLignePanier, as:'lignePanier'}
+							<li>${lignePanier.quantite}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-4">
+						<ul>
+							<li><strong>Somme</strong></li>
+							#{list listeLignePanier, as:'lignePanier'}
+							<li>${lignePanier.somme()}</li>
+							#{/list}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2">Panier : </label>
+			<div class="col-sm-10">
+				<div class="row">
+					<div class="col-sm-4">
+						<ul>
+							<li><strong>Lignes</strong></li>
+							#{list listePanier, as:'panier'}
+							<li>${panier.lignes}</li>
+							#{/list}
+						</ul>
+					</div>
+					<div class="col-sm-4">
+						<ul>
+							<li><strong>Total</strong></li>
+							#{list listePanier, as:'panier'}
+							<li>${panier.total}</li>
 							#{/list}
 						</ul>
 					</div>

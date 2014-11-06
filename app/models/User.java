@@ -20,10 +20,12 @@ public class User extends play.modules.morphia.Model
 	public String phonenumber;
 
 	public String type;
+
+	public Panier monPanier;
 	
 	//constructeur par defaut
 	public User(){
-		
+		monPanier = new Panier();
 	}
 
 	public User(String firstName, String lastName, String username, String password, String email, String
