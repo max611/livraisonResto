@@ -12,19 +12,23 @@
 		<li>${lignePanier.quantite} menus ${lignePanier.menuName.name}</li>
 		#{/list}
 	</ul>
-	<div class="row">Total de la commande : ${user.monPanier.total()}</div>
+	<div class="row">Total de la commande : ${user.monPanier.total()} $</div>
 
 	<br><h2>Détails de la livraison</h2>
-	#{form @Application.terminerCommande()}
+	#{form @Application.numReservation()}
 	<div class="form-group row">
 		<label class="col-sm-2">Date de livraison : </label>
 		<div class="col-sm-10">
-			<input type="text" class="datepicker" name="date" value="02/16/12" data-date-format="mm/dd/yy" id="datepicker">
+			<input type="text" class="datepicker" name="date" value="06/11/14" data-date-format="mm/dd/yy" id="datepicker">
 		</div>
 	</div>
 	<div class="form-group row input-append bootstrap-timepicker">
 		<label class="col-sm-2">Heure de livraison : </label>
-		<div class="col-sm-10"><input id="timepicker" name="hour" type="text" class="input-small"><span class="add-on"><i class="icon-time"></i></span></div>
+		<div class="col-sm-10"><input id="timepicker" name="hour" type="text" value="12:00" class="input-small"><span class="add-on"><i class="icon-time"></i></span></div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2">Adresse de livraison : </label>
+		<div class="col-sm-10"><input id="adresse" name="adresse" type="text" class="form-control"></div>
 	</div>
 
 	<div class="form-group row">

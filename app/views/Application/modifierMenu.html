@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'Modification Menu' /}
+
+<div class="main container-fluid">
+
+
+	<h1>Quel menu voulez vous modifier:</h1>
+	#{form @Application.updateMenu()}
+		<select class="form-control" size="1" name="menuName">
+		#{list listeMenu, as:'menu'}
+		<option name="menuName" id="menuName" value="${menu.name}">${menu.name}</option>
+		#{/list}
+		</select>
+		<input class="btn btn-primary" type="submit" name="Update"/>
+	#{/form}
+
+</div>

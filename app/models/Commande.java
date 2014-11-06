@@ -5,18 +5,31 @@ import play.db.jpa.*;
 import javax.persistence.*;
 import play.data.validation.*;
 
+
+
 @Entity
 public class Commande extends Model
 {
 
-public String numConfirmation;
+	public static int increment = 0;
 
-public Date dateLivraison;
+	public int numConfirmation;
 
-public String adressLivraison;
+	public String dateLivraison;
 
-public Commande(){
+	public String heureLivraison;
 
-}
+	public String adressLivraison;
+
+	public Commande(){
+		this.numConfirmation = this.increment++;
+	}
+
+	public Commande(String dateLivraison, String heureLivraison, String adressLivraison){
+		this.dateLivraison = dateLivraison;
+		this.heureLivraison = heureLivraison;
+		this.adressLivraison = adressLivraison;
+		this.numConfirmation = this.increment++;
+	}
 
 }

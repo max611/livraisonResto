@@ -1,0 +1,30 @@
+#{extends 'main.html' /}
+#{set title:'Delete Menu' /}
+
+
+<div class="main container-fluid">
+	<h1>Supprimer un menu</h1>
+	<p>Quel est le nom du menu que vous voulez supprimer?</p>
+
+	#{form @Application.confirmationMenuDel()}
+
+
+	<div class="form-group row">
+		<label class="col-sm-2">Name : </label>
+
+	<select size="1" name="menuName">
+	#{list listeMenu, as:'menu'}
+	<option name="menuName" id="menuName" value="${menu.name}">${menu.name}</option>
+	#{/list}
+	</select>
+
+	</div>
+
+
+	<div class="form-group row">
+		<input class="btn btn-primary" type="submit" name="Delete"/>
+	</div>
+
+
+	#{/form}
+</div>

@@ -23,6 +23,7 @@ public class LignePanier extends Model
 
 	public LignePanier(){
 		this.menuName = new Menu();
+		this.quantite = 1;
 	}
 
 	public LignePanier(Menu menuName, int quantite){
