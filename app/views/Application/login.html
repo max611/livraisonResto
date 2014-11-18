@@ -2,6 +2,7 @@
 #{set title:'Account Menu' /}
 
 <div class="main container-fluid">
+#{if login}
 	#{if user.type == "Client"}
 	<p>Le compte ${user.username} est connecté, que voulez vous faire: </p>
 
@@ -17,8 +18,9 @@
 	</div>
 
 	#{/if}
-	#{else}
-		<p>Le compte ${user.username} est connecté, que voulez vous faire: </p>
+
+	#{if user.type == "Restaurateur"}
+	<p>Le compte ${user.username} est connecté, que voulez vous faire: </p>
 
 	<div class="row">
 		<div class="col-xs-6">
@@ -37,8 +39,32 @@
 				<a class="btn btn-primary btn-lg" role="button" href="/Application/manageRestaurateur">Gérer les restaurateurs</a></br>
 					
 				<a class="btn btn-primary btn-lg" role="button" href="/Application/manageMenus">Gestion des menus</a></br>
-			<a class="btn btn-primary btn-lg" role="button" href="/Application/manageMenus">Gestion des commandes</a></br>
+			<a class="btn btn-primary btn-lg" role="button" href="/Application/gestionCommande">Gestion des commandes</a></br>
 			</div>
 		</div>
-	#{/else}
-</div>
+
+	#{/if}
+
+	#{if user.type == "Livreur"}
+		<p>Le compte ${user.username} est connecté, que voulez vous faire: </p>
+
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="half-part">
+				<h2>Votre compte</h2>
+
+				<a class="btn btn-primary btn-lg" role="button" href="/Application/account">Modifiez vos informations </a></br>
+				<a class="btn btn-primary btn-lg" role="button" href="/Application/gestionCommande">Gestion des commandes</a></br>
+				<a class="btn btn-primary btn-lg" role="button" href="/Application/logout">Logout</a></br>
+			</div>
+		</div>
+
+	#{/if}
+#{/if}
+
+#{else}
+
+Mauvais mot de passe
+
+
+#{/else}

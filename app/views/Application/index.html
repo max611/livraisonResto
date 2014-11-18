@@ -19,8 +19,8 @@
 
 	#{/if}
 
-	#{else}
-		<p>Le compte ${user.username} est connecté, que voulez vous faire: </p>
+	#{if user.type == "Restaurateur"}
+	<p>Le compte ${user.username} est connecté, que voulez vous faire: </p>
 
 	<div class="row">
 		<div class="col-xs-6">
@@ -42,8 +42,44 @@
 			<a class="btn btn-primary btn-lg" role="button" href="/Application/gestionCommande">Gestion des commandes</a></br>
 			</div>
 		</div>
-	#{/else}
+
+	#{/if}
+
+	#{if user.type == "Livreur"}
+		<p>Le compte ${user.username} est connecté, que voulez vous faire: </p>
+
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="half-part">
+				<h2>Votre compte</h2>
+
+				<a class="btn btn-primary btn-lg" role="button" href="/Application/account">Modifiez vos informations </a></br>
+				<a class="btn btn-primary btn-lg" role="button" href="/Application/gestionCommande">Gestion des commandes</a></br>
+				<a class="btn btn-primary btn-lg" role="button" href="/Application/logout">Logout</a></br>
+			</div>
+		</div>
+
+	#{/if}
 #{/if}
+
 #{else}
-Mauvais mot de passe
+
+<div class="main container-fluid">
+	<div class="row"><a class="btn btn-primary btn-lg" role="button" href="Application/formulaire">Create a new user</a></div><br>
+	#{form @Application.login()}
+
+	<div class="form-group row">
+		<label class="col-sm-2">Username : </label>
+		<div class="col-sm-10"><input class="form-control" name="username" type="text" placeholder="Enter username"></div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2">Password : </label>
+		<div class="col-sm-10"><input class="form-control" name="password" type="password" placeholder="Enter password"></div>
+	</div>
+	<div class="form-group row">
+		<input class="btn btn-primary" type="submit" name="Login" />
+	</div>
+	#{/form}
+
+
 #{/else}
