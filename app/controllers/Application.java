@@ -33,14 +33,11 @@ public class Application extends Controller {
 
     public static void login(String username, String password) {
         User user = User.find("username", username).first();
-        Logger.info("User: "+ user.username);
-        Logger.info("password: "+ user.password);
         Boolean login = user != null && user.password.equals(password);
-        Logger.info("Login: "+login);
+
         //Scope.Session("username",user.username);
         
         session.put("username", username);
-        Logger.info("test session = " + session.get("username"));
 
 
         render(login,user);
