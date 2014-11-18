@@ -6,9 +6,12 @@ import play.mvc.Scope.Session;
 
 import java.util.*;
 
+import org.apache.commons.mail.*;
 import play.Logger;
 import models.*;
 import com.google.code.morphia.annotations.Entity;
+import play.libs.Mail;
+import javax.mail.Folder;
 
 /*import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -443,11 +446,10 @@ public class Application extends Controller {
         render(menu, listeResto);
     }
 
-    public static void confirmationModificationMenu(String name, String plat, String restoName) {
+    public static void confirmationModificationMenu(String name, String restoName) {
         Menu menu = Menu.find("name", session.get("menu") ).first();
 
         menu.name = name;
-        menu.plat = plat;
         menu.restoName = restoName;
         menu.save();
         
@@ -471,6 +473,27 @@ public class Application extends Controller {
         lp.delete();
         render();
     }
+
+
+     public static void sendMailTest(){
+
+        User m = User.find("username", session.get("username") ).first();
+
+       SimpleEmail email = new SimpleEmail();
+       try{
+        email.setFrom("sender@zenexity.fr");
+        email.addTo(m.email);
+        email.setSubject("subject");
+        email.setMsg("Message");
+        Mail.send(email); 
+} catch (EmailException e) {
+
+            e.printStackTrace();
+}
+     render();   
+    }
+
+
     
 }
 
