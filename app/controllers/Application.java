@@ -271,12 +271,7 @@ public class Application extends Controller {
         Boolean restaurant = true;
 
         List<Restaurant> listeResto = Restaurant.findAll();
-
-
-        if(resto.restaurant.isEmpty() ){
-        restaurant = false;
-        }
-
+        
         render(resto,restaurant,listeResto);
     }
 
