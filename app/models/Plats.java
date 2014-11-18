@@ -3,9 +3,11 @@ package models;
 import play.db.jpa.*;
 import javax.persistence.*;
 import play.data.validation.*;
+import play.modules.morphia.Model;
+import com.google.code.morphia.annotations.Entity;
 
 @Entity
-public class Plats extends Model
+public class Plats extends play.modules.morphia.Model
 {
 
 	public String name;
@@ -18,13 +20,6 @@ public class Plats extends Model
 
 	public Plats(){
 
-	}
-
-	public Plats(String name, String description, int prix, String menu){
-		this.name = name;
-		this.description = description;
-		this.prix = prix;
-		this.menu = menu;
 	}
 
 }

@@ -48,7 +48,7 @@ public class Application extends Controller {
     }
 
     public static void create(String username, String password, String email, String firstname,
-     String lastname, String phonenumber, String accountType) {
+     String lastname, String phonenumber, String type) {
 
         User newuser = new User();
         newuser.username = username;
@@ -57,6 +57,7 @@ public class Application extends Controller {
         newuser.email = email;
         newuser.password = password;
         newuser.phonenumber = phonenumber;
+        newuser.type = type;
         
         newuser.save();
         User user = User.find("username", username).first();
@@ -80,6 +81,10 @@ public class Application extends Controller {
 
 
     public static void formulaire() {
+        List listeCompte = new ArrayList();
+        listeCompte.add("Client");
+        listeCompte.add("Restaurateur");
+        listeCompte.add("Livreur");
 
         String language = play.i18n.Lang.get();
         Logger.info("language : " + language);
@@ -89,7 +94,7 @@ public class Application extends Controller {
         else{
             play.i18n.Lang.change("en");
         }
-        render();
+        render(listeCompte);
     }
 
 
@@ -357,37 +362,63 @@ public class Application extends Controller {
 
         render(listeMenus,r);
     }
+
+    public static void passerCommandePlat(String menuName) {
+        Logger.info("Menu = " + menuName);
+        List<Plats> listePlat = Plats.find("menu", menuName ).asList();
+        Logger.info("plat = " + listePlat.get(0));
+        render(listePlat);
+    }
     
-    public static void saveAndAddCommandeMenu(String restoName, String menuName, int quantite) {
-        Logger.info("infos param = " + restoName + "  "+menuName+"  "+quantite);
-        Restaurant r = Restaurant.find("name", restoName).first();
+    public static void saveAndAddCommandeMenu( String platName, int quantite) {
+
+        Plats p = Plats.find("name", platName).first();
+        String menuName = p.menu;
+        Menu m = Menu.find("name", p.menu).first();
+        Restaurant r = Restaurant.find("name", m.restoName).first();
+        Logger.info("resto = " + r.name);
         session.put("resto", r.name);
-        List<Menu> listeMenus = Menu.find("restoName", restoName).asList();
-        Logger.info("listeMenus = " + listeMenus.get(0).name);
+
+        List<Plats> listePlat = Plats.find("menu", menuName).asList();
 
         User user = User.find("username", session.get("username") ).first();
 
         LignePanier newLigne = new LignePanier();
-        Menu menuSave = Menu.find("name", menuName).first();
-        newLigne.menuName = menuSave;
+        newLigne.plats = platName;
         newLigne.quantite = quantite;
         //newLigne.save();
 
-        user.monPanier.lignes.add(newLigne);
-        user.save();
+        newLigne.save();
 
-        Logger.info("monPanier = " +  user.monPanier.lignes.get(0).menuName.name);
-        Logger.info("listeLignePanier = " +  user.monPanier.lignes);
-        render(listeMenus,r);
+        render(listePlat,r);
     }
 
     public static void sommaireCommande(Restaurant restoName) {
 
+        List<LignePanier> listePanier = LignePanier.findAll();
+
+        int somme = 0;
+        int i = 0;
+        Plats p = null;
+        Logger.info("size = " +listePanier.size());
+
+        while( i < listePanier.size() ) {
+        p = Plats.find("name", listePanier.get(i).plats ).first();
+        somme += p.prix * listePanier.get(i).quantite ;
+        Logger.info("Plats prix = " + p.prix);
+        i++;
+      }
+
+        /*for(int i = 0; i < listePanier.size(); i++) {
+        Plats p = Plats.find("name", listePanier.get(i).plats ).first();
+        somme += plats.prix * listePanier.get(i).quantite;
+
+      }*/
+
         Restaurant r = Restaurant.find("name", session.get("resto")).first();
         User user = User.find("username", session.get("username") ).first();
-        Logger.info("listeLignePanier = " +  user.monPanier.lignes.get(0).somme());
 
-        render(r, user);
+        render(r, user, listePanier, somme);
     }
 
     public static void numReservation(String hour, String date, String adresse) {

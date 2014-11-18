@@ -6,13 +6,13 @@
 
 	<h1>Voici le récapitulatif de votre commande :</h1>
 	<div class="row">Restaurant : ${r.name}</div>
-	<div class="row">Menu : </div>
+	<div class="row">Plats : </div>
 	<ul>
-		#{list user.monPanier.lignes, as:'lignePanier'}
-		<li>${lignePanier.quantite} menus ${lignePanier.menuName.name}</li>
+		#{list listePanier, as:'plats'}
+		<li>${plats.plats}</li> Quantite: ${plats.quantite}
 		#{/list}
 	</ul>
-	<div class="row">Total de la commande : ${user.monPanier.total()} $</div>
+	<div class="row">Total de la commande : ${somme} $</div>
 
 	<br><h2>Détails de la livraison</h2>
 	#{form @Application.numReservation()}

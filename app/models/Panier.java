@@ -12,7 +12,7 @@ public class Panier extends Model
 
 	@ElementCollection
 	public List<LignePanier> lignes;
-
+/*
 	public int total(){
 		int tot = 0;
 		for(int i=0; i<lignes.size(); i++) {
@@ -24,6 +24,6 @@ public class Panier extends Model
 	//constructeur par defaut
 	public Panier(){
 		lignes = new ArrayList<LignePanier>();
-	}
+	}*/
 
 }

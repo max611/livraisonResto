@@ -56,6 +56,14 @@
 							#{/list}
 						</ul>
 					</div>
+					<div class="col-sm-2">
+						<ul>
+							<li><strong>Type</strong></li>
+							#{list listeUser, as:'user'}
+							<li>${user.type}</li>
+							#{/list}
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -229,9 +237,9 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<ul>
-							<li><strong>Nom menu</strong></li>
+							<li><strong>Nom plats</strong></li>
 							#{list listeLignePanier, as:'lignePanier'}
-							<li>${lignePanier.menuName}</li>
+							<li>${lignePanier.plats}</li>
 							#{/list}
 						</ul>
 					</div>
@@ -240,14 +248,6 @@
 							<li><strong>Quantité</strong></li>
 							#{list listeLignePanier, as:'lignePanier'}
 							<li>${lignePanier.quantite}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-4">
-						<ul>
-							<li><strong>Somme</strong></li>
-							#{list listeLignePanier, as:'lignePanier'}
-							<li>${lignePanier.somme()}</li>
 							#{/list}
 						</ul>
 					</div>

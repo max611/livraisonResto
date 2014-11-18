@@ -1,9 +1,9 @@
 #{extends 'main.html' /}
-#{set title:'Passer Commande' /}
+#{set title:'Confirmation' /}
 
 <div class="main container-fluid">
 
-<h2>Voici les menus du restaurant ${r.name} : </h2>
+	<h2>Voici les menus du restaurant ${r.name} : </h2>
 	<ul>
 		#{list listeMenus, as:'menus'}
 		<li>${menus.name}</li>
@@ -11,8 +11,8 @@
 	</ul>
 	<br><br>
 
-	<h1>Quel menu voulez vous:</h1>
-	#{form @Application.passerCommandePlat()}
+
+	#{form @Application.saveAndAddCommandeMenu()}
 		<input class="hidden" id="restoName" name="restoName" type="text" placeholder="1" min="1" value="${r.name}" max="50">
 		<div class="row form-group">
 			<label class="col-sm-2">Quel menu voulez-vous ?</label>
@@ -24,6 +24,11 @@
 				</select>
 			</div>
 		</div>
-		<input class="btn btn-primary" type="submit" name="Add" value="Sélectionner le menu"/>
+		<div class="row form-group">
+			<label class="col-sm-2">Quelle quantité ? </label>
+			<div class="col-sm-10"><input class="form-control" name="quantite" type="number" placeholder="1" min="1" max="50"></div>
+		</div>
+		<input class="btn btn-primary" type="submit" name="Add" value="Compléter la commande"/>
 	#{/form}
+
 </div>
