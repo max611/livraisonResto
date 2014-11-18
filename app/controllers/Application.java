@@ -422,6 +422,7 @@ public class Application extends Controller {
         comm.dateLivraison = date;
         comm.heureLivraison = hour;
         comm.adressLivraison = adresse;
+        comm.statut = "En préparation";
         comm.save();
         user.save();
 
@@ -530,6 +531,35 @@ public class Application extends Controller {
             e.printStackTrace();
 }
      render();   
+    }
+
+
+    public static void gestionCommande(){
+        List<Commande> listeCommande = Commande.findAll();
+        render(listeCommande);
+    }
+
+    public static void updateCommande(String commandeNum){
+        int numConfirmation = Integer.parseInt(commandeNum);
+        Logger.info("numConfirmation = " + commandeNum );
+        Commande c = Commande.find("numConfirmation", numConfirmation).first();
+        Logger.info("numConfirmation = " + c.numConfirmation );
+        List listeStatut = new ArrayList();
+        listeStatut.add("En préparation");
+        listeStatut.add("Prête");
+        listeStatut.add("Livré");
+
+        render(c, listeStatut);
+    }
+
+    public static void confirmationCommande(String numConfirm, String statut){
+        int numConfirmation = Integer.parseInt(numConfirm);
+        Logger.info("numConfirmation = " + numConfirm );
+        Commande c = Commande.find("numConfirmation", numConfirmation).first();
+        c.statut = statut;
+        c.save();
+
+        render(c);
     }
 
 

@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'Gestion Commande' /}
+
+
+<div class="main container-fluid">
+
+	<h1>Quel commande voulez vous modifier:</h1>
+
+	#{form @Application.updateCommande()}
+		<div class="row form-group">
+			<select class="form-control" size="1" name="commandeNum">
+				#{list listeCommande, as:'commande'}
+				<option class="form-control" name="commandeNum" id="commandeNum" value="${commande.numConfirmation}">${commande.numConfirmation}</option>
+				#{/list}
+			</select>
+		</div>
+		<input class="btn btn-primary" type="submit" name="Update"/>
+	#{/form}
+
+</div>

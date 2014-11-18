@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+#{set title:'Gestion Commande' /}
+
+<div class="main container-fluid">
+
+	#{form @Application.confirmationCommande()}
+
+<div class="form-group row">
+
+<div class="form-group row">
+		<label class="col-sm-2">Numero de confirmation: </label>
+		<div class="col-sm-10"><input class="form-control" name="numConfirm" type="text" value= ${c.numConfirmation} ></div>
+	</div>
+		<label class="col-sm-2">Modifier statut commande :</label>
+		<div class="col-sm-10">
+			<select class="form-control" size="1" name="statut">
+				#{list listeStatut, as:'listeStatut'}
+				<option name="statut" id="statut" value="${listeStatut}">${listeStatut}</option>
+				#{/list}
+			</select>
+		</div>
+	</div>
+		<input class="btn btn-primary" type="submit" name="Update"/>
+		#{/form}
+</div>

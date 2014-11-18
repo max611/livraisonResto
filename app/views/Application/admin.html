@@ -321,6 +321,14 @@
 							#{/list}
 						</ul>
 					</div>
+					<div class="col-sm-4">
+						<ul>
+							<li><strong>statut</strong></li>
+							#{list listeCommande, as:'commande'}
+							<li>${commande.statut}</li>
+							#{/list}
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>

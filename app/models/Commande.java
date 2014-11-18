@@ -23,6 +23,8 @@ public class Commande extends play.modules.morphia.Model
 
 	public String adressLivraison;
 
+	public String statut;
+
 	public Commande(){
 		this.numConfirmation = this.increment++;
 	}
