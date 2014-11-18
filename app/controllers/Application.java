@@ -422,13 +422,14 @@ public class Application extends Controller {
     }
 
     public static void numReservation(String hour, String date, String adresse) {
-          
+        User user = User.find("username", session.get("username") ).first();
+        user.adresse = adresse;
         Commande comm = new Commande();
         comm.dateLivraison = date;
         comm.heureLivraison = hour;
         comm.adressLivraison = adresse;
         comm.save();
-
+        user.save();
         render(comm);
 
     }
@@ -495,7 +496,8 @@ public class Application extends Controller {
         List<Plats> listePlat = Plats.findAll();
         List<LignePanier> listeLignePanier = LignePanier.findAll();
         List<Panier> listePanier = Panier.findAll();
-        render(listeUser, listeResto, listeRestau, listeMenu, listePlat, listeLignePanier, listePanier);
+        List<Commande> listeCommande = Commande.findAll();
+        render(listeUser, listeResto, listeRestau, listeMenu, listePlat, listeLignePanier, listePanier, listeCommande);
     }
 
     public static void deleteLignePanier(){

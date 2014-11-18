@@ -4,11 +4,13 @@ import java.util.Date;
 import play.db.jpa.*;
 import javax.persistence.*;
 import play.data.validation.*;
+import play.modules.morphia.Model;
+import com.google.code.morphia.annotations.Entity;
 
 
 
 @Entity
-public class Commande extends Model
+public class Commande extends play.modules.morphia.Model
 {
 
 	public static int increment = 0;
