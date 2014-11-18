@@ -409,12 +409,6 @@ public class Application extends Controller {
         i++;
       }
 
-        /*for(int i = 0; i < listePanier.size(); i++) {
-        Plats p = Plats.find("name", listePanier.get(i).plats ).first();
-        somme += plats.prix * listePanier.get(i).quantite;
-
-      }*/
-
         Restaurant r = Restaurant.find("name", session.get("resto")).first();
         User user = User.find("username", session.get("username") ).first();
 
@@ -430,6 +424,18 @@ public class Application extends Controller {
         comm.adressLivraison = adresse;
         comm.save();
         user.save();
+
+        int i = 0;
+        List<LignePanier> listePanier = LignePanier.findAll();
+
+        //Vide le panier
+        while( i < listePanier.size() ) {
+        
+        listePanier.get(i).delete() ;
+        i++;
+      }
+
+
         render(comm);
 
     }
