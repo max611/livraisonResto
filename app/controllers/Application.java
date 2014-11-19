@@ -271,7 +271,7 @@ public class Application extends Controller {
         Boolean restaurant = true;
 
         List<Restaurant> listeResto = Restaurant.findAll();
-        
+
         render(resto,restaurant,listeResto);
     }
 
@@ -407,14 +407,18 @@ public class Application extends Controller {
         render(r, user, listePanier, somme);
     }
 
-    public static void numReservation(String hour, String date, String adresse) {
+    public static void numReservation(String hour, String date, String adresse, String adresseRestaurant) {
+        Random r = new Random();
+        int numConfirmation = r.nextInt(100-1) + 1;
         User user = User.find("username", session.get("username") ).first();
         user.adresse = adresse;
         Commande comm = new Commande();
+        comm.numConfirmation = numConfirmation;
         comm.dateLivraison = date;
         comm.heureLivraison = hour;
         comm.adressLivraison = adresse;
         comm.statut = "En préparation";
+        comm.adresseRestaurant = adresseRestaurant;
         comm.save();
         user.save();
 
@@ -554,6 +558,9 @@ public class Application extends Controller {
         render(c);
     }
 
+    public static void map(){
+        render();
+    }
 
     
 }
