@@ -432,6 +432,19 @@ public class Application extends Controller {
         i++;
       }
 
+        User m = User.find("username", session.get("username") ).first();
+
+       SimpleEmail email = new SimpleEmail();
+       try{
+        email.setFrom("log210@ets.com");
+        email.addTo(m.email);
+        email.setSubject("Confirmation");
+        email.setMsg("Voici votre confirmation pour votre commande passé sur LivraisonPizza");
+        Mail.send(email); 
+        } catch (EmailException e) {
+
+            e.printStackTrace();
+        }
 
         render(comm);
 

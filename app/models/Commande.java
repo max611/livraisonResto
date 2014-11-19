@@ -21,6 +21,8 @@ public class Commande extends play.modules.morphia.Model
 
 	public String heureLivraison;
 
+	public String adresseRestaurant;
+
 	public String adressLivraison;
 
 	public String statut;
