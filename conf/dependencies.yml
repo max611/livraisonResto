@@ -1,6 +1,6 @@
 # Application dependencies
 
 require:
-    - play
-    - play -> morphia [1.2.4,)
-	- play -> i18ntools
+- play
+- play -> morphia [1.2.4,)
+- play -> i18ntools
