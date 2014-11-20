@@ -377,7 +377,7 @@ public class Application extends Controller {
         newLigne.quantite = quantite;
         newLigne.save();
 
-        render(listePlat,r);
+        render(listePlat,r,listePanier);
     }
 
     public static void sommaireCommande(Restaurant restoName) {
@@ -543,8 +543,7 @@ public class Application extends Controller {
         Commande c = Commande.find("numConfirmation", numConfirmation).first();
         Logger.info("numConfirmation = " + c.numConfirmation );
         User client = User.find("username", c.user).first();
-
-       /* SimpleEmail email = new SimpleEmail();
+        SimpleEmail email = new SimpleEmail();
         try{
             email.setFrom("sender@zenexity.fr");
             email.addTo(client.email);
@@ -553,7 +552,7 @@ public class Application extends Controller {
             Mail.send(email); 
         } catch (EmailException e) {
             e.printStackTrace();
-        }*/
+        }
        
         render(c, user);
     }
