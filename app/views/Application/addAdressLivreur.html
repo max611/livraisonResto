@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'Gestion Commande' /}
+
+
+<div class="main container-fluid">
+
+	<h1>Entrez votre adresse actuelle :</h1>
+
+	#{form @Application.gestionCommande()}
+		<div class="row form-group">
+			<label class="col-sm-2">Adresse : </label>
+			<div class="col-sm-10"><input class="form-control" name="adresse" type="text" placeholder="adresse" required></div>
+		</div>
+		<input class="btn btn-primary" type="submit" name="submit"/>
+	#{/form}
+
+</div>

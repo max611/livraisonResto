@@ -16,3 +16,4 @@ enterlastname=Entrer le nom
 enteremail=Entrer l'e-mail
 enterphonenumber=Entrer le numéro de téléphone
 enteraccounttype=Entrer le type de compte
+enteradresse=Entrer l'adresse

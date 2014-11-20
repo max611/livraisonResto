@@ -1,4 +1,10 @@
 #{extends 'main.html' /}
 #{set title:'Gestion Commande' /}
 
-La commande est maintenant modifié
+<div class="main container-fluid">
+	<h1>La commande est ${c.statut}</h1>
+
+	#{if user.type == "Restaurateur"}
+		<a class="btn btn-primary btn-lg" role="button" href="/Application/gestionCommande">Préparer une autre commande</a>
+	#{/if}
+</div>

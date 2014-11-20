@@ -3,7 +3,13 @@
 
 <div class="main container-fluid">
 
-	<h1>Quel resto voulez vous:</h1>
+	<h1>Voici la liste des restaurants :</h1>
+	<ul>
+		#{list listeResto, as:'resto'}
+		<li><strong>${resto.name}</strong> : ${resto.description}</li>
+		#{/list}
+	</ul>
+	<h3>Quel restaurant voulez vous:</h3>
 	#{form @Application.passerCommandeMenu()}
 		<select class="form-control" size="1" name="restoName">
 			#{list listeResto, as:'resto'}

@@ -3,18 +3,52 @@
 
 
 <div class="main container-fluid">
+	#{if user.type == "Restaurateur"}
+		<h1>Liste des commandes à livrer :</h1>
+		<ul>
+			#{list listeCommandepreparation, as:'commande'}
+			<li id="commandeNum">Commande n°${commande.numConfirmation} : le ${commande.dateLivraison} à ${commande.heureLivraison} à l'adresse ${commande.adressLivraison}</li>
+			#{/list}
+		</ul>
 
-	<h1>Quel commande voulez vous modifier:</h1>
 
-	#{form @Application.updateCommande()}
-		<div class="row form-group">
-			<select class="form-control" size="1" name="commandeNum">
-				#{list listeCommande, as:'commande'}
-				<option class="form-control" name="commandeNum" id="commandeNum" value="${commande.numConfirmation}">${commande.numConfirmation}</option>
-				#{/list}
-			</select>
-		</div>
-		<input class="btn btn-primary" type="submit" name="Update"/>
-	#{/form}
+		<h1>Quelle commande voulez vous modifier:</h1>
+
+		#{form @Application.updateCommande()}
+			<div class="row form-group">
+				<select class="form-control" size="1" name="commandeNum">
+					#{list listeCommandepreparation, as:'commande'}
+					<option class="form-control" name="commandeNum" id="commandeNum" value="${commande.numConfirmation}">${commande.numConfirmation}</option>
+					#{/list}
+				</select>
+			</div>
+			<input class="btn btn-primary" type="submit" name="Update"/>
+		#{/form}
+	#{/if}
+
+
+	
+	#{if user.type == "Livreur"}
+		<h1>Liste des commandes à livrer :</h1>
+		<ul>
+			#{list listeCommandeprete, as:'commande'}
+			<li id="commandeNum">Commande n°${commande.numConfirmation} : le ${commande.dateLivraison} à ${commande.heureLivraison} à l'adresse ${commande.adressLivraison}</li>
+			#{/list}
+		</ul>
+
+
+		<h1>Quelle commande voulez vous modifier:</h1>
+
+		#{form @Application.updateCommande()}
+			<div class="row form-group">
+				<select class="form-control" size="1" name="commandeNum">
+					#{list listeCommandeprete, as:'commande'}
+					<option class="form-control" name="commandeNum" id="commandeNum" value="${commande.numConfirmation}">${commande.numConfirmation}</option>
+					#{/list}
+				</select>
+			</div>
+			<input class="btn btn-primary" type="submit" name="Update"/>
+		#{/form}
+	#{/if}
 
 </div>

@@ -1,12 +1,10 @@
 package models;
-import java.util.Date;
 
 import play.db.jpa.*;
 import javax.persistence.*;
 import play.data.validation.*;
 import play.modules.morphia.Model;
 import com.google.code.morphia.annotations.Entity;
-
 
 
 @Entity
@@ -26,6 +24,8 @@ public class Commande extends play.modules.morphia.Model
 	public String adressLivraison;
 
 	public String statut;
+
+	public String user;
 
 	public Commande(){
 		this.numConfirmation = this.increment++;

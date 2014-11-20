@@ -45,7 +45,7 @@ public class Application extends Controller {
     }
 
     public static void create(String username, String password, String email, String firstname,
-     String lastname, String phonenumber, String type) {
+     String lastname, String phonenumber, String adresse) {
 
         User newuser = new User();
         newuser.username = username;
@@ -54,7 +54,8 @@ public class Application extends Controller {
         newuser.email = email;
         newuser.password = password;
         newuser.phonenumber = phonenumber;
-        newuser.type = type;
+        newuser.adresse = adresse;
+        newuser.type = "Client";
         
         newuser.save();
         User user = User.find("username", username).first();
@@ -62,7 +63,7 @@ public class Application extends Controller {
         render(user);
     }
 
-    public static void update(String username, String password, String firstname, String lastname, String phonenumber) {
+    public static void update(String username, String password, String firstname, String lastname, String phonenumber, String adresse) {
         Logger.info("username dans la session = " + session.get("username"));
         User test = User.find("username", session.get("username") ).first();
         
@@ -70,6 +71,7 @@ public class Application extends Controller {
         test.lastName = lastname;
         test.password = password;
         test.phonenumber = phonenumber;
+        test.adresse = adresse;
         
         test.save();
         
@@ -94,7 +96,6 @@ public class Application extends Controller {
         render(listeCompte);
     }
 
-
     public static void logout() {
         session.clear();
         Logger.info("Session apres logout: "+ session);
@@ -113,11 +114,13 @@ public class Application extends Controller {
     }
 
     public static void manageRestaurant(){
-        render();
+        
+        User user = User.find("username",session.get("username")).first();
+        render(user);
     }
 
     public static void formulaireResto() {
-        List<Restaurateur> listeResto = Restaurateur.findAll();
+        List<User> listeResto = User.find("type", "Restaurateur").asList();
         render(listeResto);
     }
 
@@ -125,7 +128,7 @@ public class Application extends Controller {
 
         Restaurant resto = Restaurant.find("name", restoName ).first();
         session.put("restaurant", restoName);
-        List<Restaurateur> listeResto = Restaurateur.findAll();
+        List<User> listeResto = User.find("type", "Restaurateur").asList();
         
         render(resto,listeResto);
     }
@@ -147,10 +150,11 @@ public class Application extends Controller {
             
         }
         else{
-            
+            User user = User.find("username", session.get("username") ).first();
             //List<Restaurant> listeResto = Restaurant.find("admin", session.get("username")).fetch();
             List<Restaurant> listeResto = Restaurant.findAll();
-            render(login,listeResto);
+            List<Restaurant> listeRestoRestaurateur = Restaurant.find("admin", user.username).asList();
+            render(login,listeResto, listeRestoRestaurateur, user);
         
         }
     }
@@ -229,37 +233,38 @@ public class Application extends Controller {
 
     public static void modificationRestaurateur() {
 
-        List<Restaurateur> listeResto = Restaurateur.findAll();
+        List<User> listeResto = User.find("type", "Restaurateur").asList();
         render(listeResto);
     
     }
 
     public static void supprimerRestaurateur() {
 
-        List<Restaurateur> listeResto = Restaurateur.findAll();
+        List<User> listeResto = User.find("type", "Restaurateur").asList();
         render(listeResto);
     
     }
 
     public static void createRestaurateur(String username, String password, String email, String firstname,
         String lastname, String phonenumber, String restaurant) {
-        Restaurateur test = new Restaurateur();
+        User test = new User();
         test.username = username;
         test.firstName = firstname;
         test.lastName = lastname;
         test.email = email;
         test.phonenumber = phonenumber;
+        test.type = "Restaurateur";
         test.restaurant = restaurant;
         
         test.save();
 
-        Restaurateur restaurateur = test;
+        User restaurateur = test;
         render(restaurateur,restaurant);
     }
 
     public static void deleteRestaurateur(String restoName) {
 
-        Restaurateur resto = Restaurateur.find("username", restoName ).first();
+        User resto = User.find("username, type",restoName,"Restaurateur").first();
 
         resto.delete();
         render(restoName);
@@ -267,7 +272,8 @@ public class Application extends Controller {
 
     public static void updateRestaurateur(String restoName) {
 
-        Restaurateur resto = Restaurateur.find("username", restoName ).first();
+        User resto = User.find("username, type",restoName,"Restaurateur").first();
+
         Boolean restaurant = true;
 
         List<Restaurant> listeResto = Restaurant.findAll();
@@ -277,8 +283,7 @@ public class Application extends Controller {
 
     public static void confirmationModificationRestaurateur(String username, String firstName, String lastName, String restaurant) {
 
-        Restaurateur resto = Restaurateur.find("username", username ).first();
-        
+        User resto = User.find("username, type",username,"Restaurateur").first();
         resto.firstName = firstName;
         resto.lastName = lastName;
         resto.restaurant = restaurant;
@@ -313,19 +318,20 @@ public class Application extends Controller {
     }
 
     public static void createPlat(String name, String description, String menu, int prix) {
-        Menu m = Menu.find("name", menu).first();
-        m.plat = name;
-        m.save();
         Plats p = new Plats();
+        Boolean infodesc = true;
         p.name = name;
         p.description = description;
         p.prix = prix;
         p.menu = menu;
 
+        if(description != null || !description.isEmpty()) infodesc = true;
+        else    infodesc = false;
+
         p.save();
         Plats plat = Plats.find("name", name).first();
 
-        render(plat);
+        render(plat, infodesc);
     }
 
     public static void FormulairePlat() {
@@ -356,9 +362,9 @@ public class Application extends Controller {
     }
 
     public static void passerCommandePlat(String menuName) {
-        Logger.info("Menu = " + menuName);
+        //Logger.info("Menu = " + menuName);
         List<Plats> listePlat = Plats.find("menu", menuName ).asList();
-        Logger.info("plat = " + listePlat.get(0));
+        //Logger.info("plat = " + listePlat.get(0));
         render(listePlat);
     }
     
@@ -418,6 +424,7 @@ public class Application extends Controller {
         comm.heureLivraison = hour;
         comm.adressLivraison = adresse;
         comm.statut = "En préparation";
+        comm.user = user.username;
         comm.adresseRestaurant = adresseRestaurant;
         comm.save();
         user.save();
@@ -427,27 +434,24 @@ public class Application extends Controller {
 
         //Vide le panier
         while( i < listePanier.size() ) {
-        
-        listePanier.get(i).delete() ;
-        i++;
-      }
+            listePanier.get(i).delete() ;
+            i++;
+        }
 
         User m = User.find("username", session.get("username") ).first();
 
-       SimpleEmail email = new SimpleEmail();
-       try{
-        email.setFrom("log210@ets.com");
-        email.addTo(m.email);
-        email.setSubject("Confirmation");
-        email.setMsg("Voici votre confirmation pour votre commande passé sur LivraisonPizza");
-        Mail.send(email); 
+        SimpleEmail email = new SimpleEmail();
+        try{
+            email.setFrom("log210@ets.com");
+            email.addTo(m.email);
+            email.setSubject("Confirmation");
+            email.setMsg("Voici votre confirmation pour votre commande passé sur LivraisonPizza");
+            Mail.send(email); 
         } catch (EmailException e) {
-
             e.printStackTrace();
         }
 
         render(comm);
-
     }
 
 
@@ -506,14 +510,13 @@ public class Application extends Controller {
 
     public static void admin(){
         List<Restaurant> listeRestau = Restaurant.findAll();
-        List<Restaurateur> listeResto = Restaurateur.findAll();
         List<User> listeUser = User.findAll();
         List<Menu> listeMenu = Menu.findAll();
         List<Plats> listePlat = Plats.findAll();
         List<LignePanier> listeLignePanier = LignePanier.findAll();
         List<Panier> listePanier = Panier.findAll();
         List<Commande> listeCommande = Commande.findAll();
-        render(listeUser, listeResto, listeRestau, listeMenu, listePlat, listeLignePanier, listePanier, listeCommande);
+        render(listeUser, listeRestau, listeMenu, listePlat, listeLignePanier, listePanier, listeCommande);
     }
 
     public static void deleteLignePanier(){
@@ -523,58 +526,66 @@ public class Application extends Controller {
         render();
     }
 
-
-     public static void sendMailTest(){
-
-        User m = User.find("username", session.get("username") ).first();
-
-       SimpleEmail email = new SimpleEmail();
-       try{
-        email.setFrom("sender@zenexity.fr");
-        email.addTo(m.email);
-        email.setSubject("subject");
-        email.setMsg("Message");
-        Mail.send(email); 
-} catch (EmailException e) {
-
-            e.printStackTrace();
-}
-     render();   
+    public static void addAdressLivreur(){
+        render();
     }
 
+    public static void gestionCommande(String adresse){
+        User user = User.find("username", session.get("username") ).first();
+        user.adresse = adresse;
+        user.save();
 
-    public static void gestionCommande(){
-        List<Commande> listeCommande = Commande.findAll();
-        render(listeCommande);
+        List<Commande> listeCommandeprete = Commande.find("statut", "Prête").asList();
+        List<Commande> listeCommandepreparation = Commande.find("statut", "En préparation").asList();
+        render(user, listeCommandeprete, listeCommandepreparation);
     }
 
     public static void updateCommande(String commandeNum){
+        User user = User.find("username", session.get("username")).first();
         int numConfirmation = Integer.parseInt(commandeNum);
         Logger.info("numConfirmation = " + commandeNum );
         Commande c = Commande.find("numConfirmation", numConfirmation).first();
         Logger.info("numConfirmation = " + c.numConfirmation );
-        List listeStatut = new ArrayList();
-        listeStatut.add("En préparation");
-        listeStatut.add("Prête");
-        listeStatut.add("Livré");
+        User client = User.find("username", c.user).first();
 
-        render(c, listeStatut);
+        SimpleEmail email = new SimpleEmail();
+        try{
+            email.setFrom("sender@zenexity.fr");
+            email.addTo(client.email);
+            email.setSubject("Evolution de votre commande");
+            email.setMsg("Votre commande est maintenant "+ c.statut);
+            Mail.send(email); 
+        } catch (EmailException e) {
+            e.printStackTrace();
+        }
+       
+        render(c, user);
     }
 
     public static void confirmationCommande(String numConfirm, String statut){
+        User user = User.find("username", session.get("username")).first();
         int numConfirmation = Integer.parseInt(numConfirm);
         Logger.info("numConfirmation = " + numConfirm );
         Commande c = Commande.find("numConfirmation", numConfirmation).first();
         c.statut = statut;
         c.save();
 
-        render(c);
+        render(user, c);
     }
 
     public static void map(){
         render();
     }
 
+    public static void creationLivreur(){
+        List listeCompte = new ArrayList();
+        listeCompte.add("Client");
+        listeCompte.add("Restaurateur");
+        listeCompte.add("Livreur");
+        listeCompte.add("Entrepreneur");
+
+        render(listeCompte);
+    }
     
 }
 

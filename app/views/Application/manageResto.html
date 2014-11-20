@@ -18,9 +18,17 @@
 	#{form @Application.updateResto()}
 		<div class="row form-group">
 			<select class="form-control" size="1" name="restoName">
-				#{list listeResto, as:'restaurant'}
-				<option name="restoName" id="restoName" value="${restaurant.name}">${restaurant.name}</option>
-				#{/list}
+				#{if user.type == "Restaurateur"}
+					#{list listeRestoRestaurateur, as:'restaurant'}
+					<option name="restoName" id="restoName" value="${restaurant.name}">${restaurant.name}</option>
+					#{/list}
+				#{/if}
+				#{else}
+					#{list listeResto, as:'restaurant'}
+					<option name="restoName" id="restoName" value="${restaurant.name}">${restaurant.name}</option>
+					#{/list}
+				#{/else}
+
 			</select>
 		</div>
 		<input class="btn btn-primary" type="submit" name="Update"/>

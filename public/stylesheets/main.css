@@ -66,3 +66,7 @@ ul#list-restaurant{
 .btn-lg{
 	margin: 5px;
 }
+
+#content2{
+	visibility: hidden;
+}

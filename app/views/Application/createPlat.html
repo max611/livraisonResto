@@ -5,6 +5,11 @@
 	<h1>Vous avez créé: </h1>
 
 	<p>Plat: ${plat.name}</p>
-	<a href="/Application/manageMenus" class="btn btn-primary" role="button">Retour à la gestion des menus</a>
-	<a href="/" class="btn btn-primary" role="button">Retour à la page d'accueil</a>
+
+	#{if infodesc}
+		<p>Attention, la description du plat n'est pas renseignée</p>
+	#{/if}
+	<a href="/Application/formulairePlat" class="btn btn-primary" role="button">Ajouter un nouveau plat</a><br>
+	<a href="/Application/manageMenus" class="btn btn-primary" role="button">Retour à la gestion des menus</a><br>
+	<a href="/" class="btn btn-primary" role="button">Retour à la page d'accueil</a><br>
 </div>

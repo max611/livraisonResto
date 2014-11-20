@@ -3,8 +3,9 @@
 
 <div class="main container-fluid">
 #{if login}
+	
 	#{if user.type == "Client"}
-	<p>Le compte ${user.username} est connecté, que voulez vous faire: </p>
+	<p>Le compte ${user.username} est connecté, que voulez vous faire : </p>
 
 	<div class="row">
 		<div class="col-xs-6">
@@ -13,7 +14,6 @@
 				<a class="btn btn-primary btn-lg" role="button" href="/Application/account">Modifiez vos informations </a></br>
 				<a class="btn btn-primary btn-lg" role="button" href="/Application/passerCommande">Passer une commande</a></br>
 				<a class="btn btn-primary btn-lg" role="button" href="/Application/logout">Logout</a></br>
-				<a class="btn btn-primary btn-lg" role="button" href="/Application/map">Map</a></br>
 			</div>
 		</div>
 	</div>
@@ -28,8 +28,6 @@
 			<div class="half-part">
 				<h2>Votre compte</h2>
 				<a class="btn btn-primary btn-lg" role="button" href="/Application/account">Modifiez vos informations </a></br>
-				<a class="btn btn-primary btn-lg" role="button" href="/Application/passerCommande">Passer une commande</a></br>
-				<a class="btn btn-primary btn-lg" role="button" href="/Application/map">Map</a></br>
 				<a class="btn btn-primary btn-lg" role="button" href="/Application/logout">Logout</a></br>
 			</div>
 		</div>
@@ -37,18 +35,17 @@
 		<div class="col-xs-6">
 			<div class="half-part">
 				<h2>Admin</h2>
-				<a class="btn btn-primary btn-lg" role="button" href="/Application/manageRestaurant">Gestion des restaurants</a>
-				<a class="btn btn-primary btn-lg" role="button" href="/Application/manageRestaurateur">Gérer les restaurateurs</a></br>
-					
-				<a class="btn btn-primary btn-lg" role="button" href="/Application/manageMenus">Gestion des menus</a></br>
-			<a class="btn btn-primary btn-lg" role="button" href="/Application/gestionCommande">Gestion des commandes</a></br>
+				<a class="btn btn-primary btn-lg" role="button" href="/Application/manageRestaurant">Gestion de mes restaurants</a>
+				<a class="btn btn-primary btn-lg" role="button" href="/Application/manageMenus">Gestion de mes menus</a></br>
+				<a class="btn btn-primary btn-lg" role="button" href="/Application/gestionCommande">Préparer des commandes</a></br>
+				<a class="btn btn-primary btn-lg" role="button" href="/Application/creationLivreur">Créer un livreur</a></br>
 			</div>
 		</div>
 
 	#{/if}
 
 	#{if user.type == "Livreur"}
-		<p>Le compte ${user.username} est connecté, que voulez vous faire: </p>
+		<p>Le compte ${user.username} est connecté, que voulez vous faire : </p>
 
 	<div class="row">
 		<div class="col-xs-6">
@@ -56,11 +53,34 @@
 				<h2>Votre compte</h2>
 
 				<a class="btn btn-primary btn-lg" role="button" href="/Application/account">Modifiez vos informations </a></br>
-				<a class="btn btn-primary btn-lg" role="button" href="/Application/gestionCommande">Gestion des commandes</a></br>
+				<a class="btn btn-primary btn-lg" role="button" href="/Application/addAdressLivreur">Carnet des livraisons</a></br>
 				<a class="btn btn-primary btn-lg" role="button" href="/Application/logout">Logout</a></br>
 			</div>
 		</div>
 
+	#{/if}
+
+
+	#{if user.type == "Entrepreneur"}
+		<h1>ADMINISTRATEUR - ENTREPRENEUR</h1>
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="half-part">
+					<h2>Données</h2>
+					<a class="btn btn-primary btn-lg" role="button" href="/Application/admin">Toutes les données</a></br>
+					<a class="btn btn-primary btn-lg" role="button" href="/Application/logout">Logout</a></br>
+				</div>
+			</div>
+
+			<div class="col-xs-6">
+				<div class="half-part">
+					<h2>Admin</h2>
+					<a class="btn btn-primary btn-lg" role="button" href="/Application/manageRestaurant">Gestion des restaurants</a>
+					<a class="btn btn-primary btn-lg" role="button" href="/Application/manageRestaurateur">Gestion des restaurateurs</a>
+					<a class="btn btn-primary btn-lg" role="button" href="/Application/creationLivreur">Créer un livreur</a></br>
+				</div>
+			</div>
+		</div>
 	#{/if}
 #{/if}
 
