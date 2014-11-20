@@ -370,6 +370,7 @@ public class Application extends Controller {
     
     public static void saveAndAddCommandeMenu( String platName, int quantite) {
 
+        List<LignePanier> listePanier = LignePanier.findAll();
         Plats p = Plats.find("name", platName).first();
         String menuName = p.menu;
         Menu m = Menu.find("name", p.menu).first();
@@ -388,7 +389,7 @@ public class Application extends Controller {
 
         newLigne.save();
 
-        render(listePlat,r);
+        render(listePlat,r,listePanier);
     }
 
     public static void sommaireCommande(Restaurant restoName) {
@@ -548,16 +549,6 @@ public class Application extends Controller {
         Logger.info("numConfirmation = " + c.numConfirmation );
         User client = User.find("username", c.user).first();
 
-        SimpleEmail email = new SimpleEmail();
-        try{
-            email.setFrom("sender@zenexity.fr");
-            email.addTo(client.email);
-            email.setSubject("Evolution de votre commande");
-            email.setMsg("Votre commande est maintenant "+ c.statut);
-            Mail.send(email); 
-        } catch (EmailException e) {
-            e.printStackTrace();
-        }
        
         render(c, user);
     }
