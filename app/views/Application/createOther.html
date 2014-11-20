@@ -1,0 +1,13 @@
+#{extends 'main.html' /}
+#{set title:'Account created' /}
+
+<div class="main container-fluid">
+	#{if user}
+		<p>Account created!</p>
+		<p>Le compte ${user.username} à été créé</p>
+	#{/if}
+	#{else}
+		<p>Nope :( </p>
+	#{/else}
+	<a href="/" class="btn btn-primary" role="button">Retour à la page d'accueil</a>
+</div>

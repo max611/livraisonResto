@@ -14,8 +14,6 @@ public class Restaurant extends play.modules.morphia.Model
 
 	public String description;
 
-	public String adresse;
-
 	public Restaurant(){
 		
 	}

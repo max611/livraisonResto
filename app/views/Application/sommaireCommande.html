@@ -28,13 +28,23 @@
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-2">Adresse de livraison : </label>
-		<div class="col-sm-10"><input id="adresse" name="adresse" type="text" class="form-control" value= "${user.adresse}" ></div>
+		<div class="col-sm-10">
+			<select class="form-control" size="1" name="adresse">
+				<option name="adresse" id="adresse" value=""></option>
+				#{list adList, as:'adresse'}
+				<option name="adresse" id="adresse" value="${adresse.adresse}">${adresse.adresse}</option>
+				#{/list}
+			</select>
+		</div>
 	</div>
+	<a class="btn btn-primary" id="addAdresse">Ajouter une nouvelle adresse</a>
 
 	<div class="form-group row hidden">
 		<label class="col-sm-2">Adresse du restaurant : </label>
-		<div class="col-sm-10"><input id="adresseRestaurant" name="adresseRestaurant" type="text" class="form-control" value= "${r.adresse}" ></div>
+		<div class="col-sm-10"><input id="adresseRestaurant" name="adresseRestaurant" type="text" class="form-control" value= "${adr.adresse}" ></div>
 	</div>
+
+
 
 	<div class="form-group row">
 		<input class="btn btn-primary" type="submit" name="Create"/>

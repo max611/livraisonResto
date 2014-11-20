@@ -13,26 +13,21 @@ import com.google.code.morphia.annotations.Entity;
 import play.libs.Mail;
 import javax.mail.Folder;
 
-/*import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;*/
-
 public class Modifier extends Controller {
 
-	public static void update(String username, String password, String firstname, String lastname, String phonenumber) {
+	public static void update(String username, String password, String phonenumber, String adresse) {
         Logger.info("username dans la session = " + session.get("username"));
         User test = User.find("username", session.get("username") ).first();
+        Adresse ad = Adresse.find("user", test.username).first();
         
-        test.firstName = firstname;
-        test.lastName = lastname;
+        ad.adresse = adresse;
         test.password = password;
         test.phonenumber = phonenumber;
         
         test.save();
+        ad.save();
         
-        render(test);
+        render(test, ad);
     }
 
 }

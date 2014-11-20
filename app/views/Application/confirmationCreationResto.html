@@ -4,8 +4,8 @@
 <div class="main container-fluid">
 	<h1>Les informations de votre nouveau restaurant </h1>
 
-	#{if resto.admin == "Aucun"}
-			<p>Le compte n'a cependant pas de restaurateur.</p>
+	#{if infodesc}
+			<p><strong>ATTENTION !</strong> Le resturant n'a pas de restaurateur assigné.</p>
 	#{/if}	
 	#{else}
 	<p>Restaurateur: ${resto.admin}</p>

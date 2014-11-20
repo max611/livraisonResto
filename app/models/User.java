@@ -23,8 +23,6 @@ public class User extends play.modules.morphia.Model
 
 	public Panier monPanier;
 
-	public String adresse;
-
 	public String restaurant;
 	
 	//constructeur par defaut

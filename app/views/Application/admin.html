@@ -3,271 +3,277 @@
 
 
 <div class="main container-fluid">
-		<h1>Donnée de MongoDB</h1>
-		<div class="form-group row">
-			<label class="col-sm-2">Utilisateurs : </label>
-			<div class="col-sm-10">
-				<div class="row">
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Username</strong></li>
-							#{list listeUser, as:'user'}
-							<li>${user.username}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>First Name</strong></li>
-							#{list listeUser, as:'user'}
-							<li>${user.firstName}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Last Name</strong></li>
-							#{list listeUser, as:'user'}
-							<li>${user.lastName}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Password</strong></li>
-							#{list listeUser, as:'user'}
-							<li>${user.password}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Email</strong></li>
-							#{list listeUser, as:'user'}
-							<li>${user.email}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Phone Number</strong></li>
-							#{list listeUser, as:'user'}
-							<li>${user.phonenumber}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Type</strong></li>
-							#{list listeUser, as:'user'}
-							<li>${user.type}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Adresse</strong></li>
-							#{list listeUser, as:'user'}
-							<li>${user.adresse}</li>
-							#{/list}
-						</ul>
-					</div>
+	<h1>Donnée de MongoDB</h1>
+	<div class="form-group row">
+		<label class="col-sm-1">Utilisateurs</label>
+		<div class="col-sm-11">
+			<div class="row">
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Username</strong></li>
+						#{list listeUser, as:'user'}
+						<li>${user.username}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>First Name</strong></li>
+						#{list listeUser, as:'user'}
+						<li>${user.firstName}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Last Name</strong></li>
+						#{list listeUser, as:'user'}
+						<li>${user.lastName}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Password</strong></li>
+						#{list listeUser, as:'user'}
+						<li>${user.password}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Email</strong></li>
+						#{list listeUser, as:'user'}
+						<li>${user.email}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Phone Number</strong></li>
+						#{list listeUser, as:'user'}
+						<li>${user.phonenumber}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Type</strong></li>
+						#{list listeUser, as:'user'}
+						<li>${user.type}</li>
+						#{/list}
+					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="form-group row">
-			<label class="col-sm-2">Restaurants : </label>
-			<div class="col-sm-10">
-				<div class="row">
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Name</strong></li>
-							#{list listeRestau, as:'restaurant'}
-							<li>${restaurant.name}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Admin</strong></li>
-							#{list listeRestau, as:'restaurant'}
-							<li>${restaurant.admin}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Description</strong></li>
-							#{list listeRestau, as:'restaurant'}
-							<li>${restaurant.description}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Adresse</strong></li>
-							#{list listeRestau, as:'restaurant'}
-							<li>${restaurant.adresse}</li>
-							#{/list}
-						</ul>
-					</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1">Adresses</label>
+		<div class="col-sm-11">
+			<div class="row">
+				<div class="col-sm-6">
+					<ul>
+						<li><strong>Adresse</strong></li>
+						#{list listeAdresse, as:'adresse'}
+						<li>${adresse.adresse}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-6">
+					<ul>
+						<li><strong>User/Restaurant</strong></li>
+						#{list listeAdresse, as:'adresse'}
+						<li>${adresse.user}</li>
+						#{/list}
+					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="form-group row">
-			<label class="col-sm-2">Menus : </label>
-			<div class="col-sm-10">
-				<div class="row">
-					<div class="col-sm-4">
-						<ul>
-							<li><strong>Name</strong></li>
-							#{list listeMenu, as:'menu'}
-							<li>${menu.name}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-4">
-						<ul>
-							<li><strong>Resto Name</strong></li>
-							#{list listeMenu, as:'menu'}
-							<li>${menu.restoName}</li>
-							#{/list}
-						</ul>
-					</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1">Restaurants</label>
+		<div class="col-sm-11">
+			<div class="row">
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Name</strong></li>
+						#{list listeRestau, as:'restaurant'}
+						<li>${restaurant.name}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Admin</strong></li>
+						#{list listeRestau, as:'restaurant'}
+						<li>${restaurant.admin}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Description</strong></li>
+						#{list listeRestau, as:'restaurant'}
+						<li>${restaurant.description}</li>
+						#{/list}
+					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="form-group row">
-			<label class="col-sm-2">Plats : </label>
-			<div class="col-sm-10">
-				<div class="row">
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Name</strong></li>
-							#{list listePlat, as:'plat'}
-							<li>${plat.name}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Description</strong></li>
-							#{list listePlat, as:'plat'}
-							<li>${plat.description}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Prix</strong></li>
-							#{list listePlat, as:'plat'}
-							<li>${plat.prix}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>Menu</strong></li>
-							#{list listePlat, as:'plat'}
-							<li>${plat.menu}</li>
-							#{/list}
-						</ul>
-					</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1">Menus</label>
+		<div class="col-sm-11">
+			<div class="row">
+				<div class="col-sm-4">
+					<ul>
+						<li><strong>Name</strong></li>
+						#{list listeMenu, as:'menu'}
+						<li>${menu.name}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<ul>
+						<li><strong>Resto Name</strong></li>
+						#{list listeMenu, as:'menu'}
+						<li>${menu.restoName}</li>
+						#{/list}
+					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="form-group row">
-			<label class="col-sm-2">Lignes panier : </label>
-			<div class="col-sm-10">
-				<div class="row">
-					<div class="col-sm-4">
-						<ul>
-							<li><strong>Nom plats</strong></li>
-							#{list listeLignePanier, as:'lignePanier'}
-							<li>${lignePanier.plats}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-4">
-						<ul>
-							<li><strong>Quantité</strong></li>
-							#{list listeLignePanier, as:'lignePanier'}
-							<li>${lignePanier.quantite}</li>
-							#{/list}
-						</ul>
-					</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1">Plats</label>
+		<div class="col-sm-11">
+			<div class="row">
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Name</strong></li>
+						#{list listePlat, as:'plat'}
+						<li>${plat.name}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Description</strong></li>
+						#{list listePlat, as:'plat'}
+						<li>${plat.description}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Prix</strong></li>
+						#{list listePlat, as:'plat'}
+						<li>${plat.prix}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Menu</strong></li>
+						#{list listePlat, as:'plat'}
+						<li>${plat.menu}</li>
+						#{/list}
+					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="form-group row">
-			<label class="col-sm-2">Panier : </label>
-			<div class="col-sm-10">
-				<div class="row">
-					<div class="col-sm-4">
-						<ul>
-							<li><strong>Lignes</strong></li>
-							#{list listePanier, as:'panier'}
-							<li>${panier.lignes}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-4">
-						<ul>
-							<li><strong>Total</strong></li>
-							#{list listePanier, as:'panier'}
-							<li>${panier.total}</li>
-							#{/list}
-						</ul>
-					</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1">Lignes panier</label>
+		<div class="col-sm-11">
+			<div class="row">
+				<div class="col-sm-4">
+					<ul>
+						<li><strong>Nom plats</strong></li>
+						#{list listeLignePanier, as:'lignePanier'}
+						<li>${lignePanier.plats}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<ul>
+						<li><strong>Quantité</strong></li>
+						#{list listeLignePanier, as:'lignePanier'}
+						<li>${lignePanier.quantite}</li>
+						#{/list}
+					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="form-group row">
-			<label class="col-sm-2">Commande : </label>
-			<div class="col-sm-10">
-				<div class="row">
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>numConfirmation</strong></li>
-							#{list listeCommande, as:'commande'}
-							<li>${commande.numConfirmation}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>dateLivraison</strong></li>
-							#{list listeCommande, as:'commande'}
-							<li>${commande.dateLivraison}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>heureLivraison</strong></li>
-							#{list listeCommande, as:'commande'}
-							<li>${commande.heureLivraison}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>adressLivraison</strong></li>
-							#{list listeCommande, as:'commande'}
-							<li>${commande.adressLivraison}</li>
-							#{/list}
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<li><strong>statut</strong></li>
-							#{list listeCommande, as:'commande'}
-							<li>${commande.statut}</li>
-							#{/list}
-						</ul>
-					</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1">Panier</label>
+		<div class="col-sm-11">
+			<div class="row">
+				<div class="col-sm-4">
+					<ul>
+						<li><strong>Lignes</strong></li>
+						#{list listePanier, as:'panier'}
+						<li>${panier.lignes}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<ul>
+						<li><strong>Total</strong></li>
+						#{list listePanier, as:'panier'}
+						<li>${panier.total}</li>
+						#{/list}
+					</ul>
 				</div>
 			</div>
 		</div>
-
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1">Commande</label>
+		<div class="col-sm-11">
+			<div class="row">
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>numConfirmation</strong></li>
+						#{list listeCommande, as:'commande'}
+						<li>${commande.numConfirmation}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>dateLivraison</strong></li>
+						#{list listeCommande, as:'commande'}
+						<li>${commande.dateLivraison}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>heureLivraison</strong></li>
+						#{list listeCommande, as:'commande'}
+						<li>${commande.heureLivraison}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-3">
+					<ul>
+						<li><strong>adressLivraison</strong></li>
+						#{list listeCommande, as:'commande'}
+						<li>${commande.adressLivraison}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-3">
+					<ul>
+						<li><strong>statut</strong></li>
+						#{list listeCommande, as:'commande'}
+						<li>${commande.statut}</li>
+						#{/list}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
