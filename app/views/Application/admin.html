@@ -273,6 +273,14 @@
 						#{/list}
 					</ul>
 				</div>
+				<div class="col-sm-3">
+					<ul>
+						<li><strong>user</strong></li>
+						#{list listeCommande, as:'commande'}
+						<li>${commande.user}</li>
+						#{/list}
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

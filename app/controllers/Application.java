@@ -361,6 +361,7 @@ public class Application extends Controller {
     }
     
     public static void saveAndAddCommandeMenu( String platName, int quantite) {
+        List<LignePanier> listePanier = LignePanier.findAll();
         Plats p = Plats.find("name", platName).first();
         String menuName = p.menu;
         Menu m = Menu.find("name", p.menu).first();
@@ -406,8 +407,6 @@ public class Application extends Controller {
         Random r = new Random();
         int numConfirmation = r.nextInt(100-1) + 1;
         User user = User.find("username", session.get("username") ).first();
-        Adresse ad = Adresse.find("user", user.username).first();
-        ad.adresse = adresse;
         Adresse newad = new Adresse();
         newad.user = user.username;
         newad.adresse = newadresse;
@@ -423,7 +422,7 @@ public class Application extends Controller {
         comm.adresseRestaurant = adresseRestaurant;
         comm.save();
         user.save();
-        ad.save();
+
         newad.save();
 
         int i = 0;
@@ -528,8 +527,8 @@ public class Application extends Controller {
     public static void gestionCommande(String adresse){
         User user = User.find("username", session.get("username") ).first();
         Adresse ad = Adresse.find("user", user.username).first();
-        ad.adresse = adresse;
-        ad.save();
+        //ad.adresse = adresse;
+        //ad.save();
 
         List<Commande> listeCommandeprete = Commande.find("statut", "Prête").asList();
         List<Commande> listeCommandepreparation = Commande.find("statut", "En préparation").asList();

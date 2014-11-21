@@ -80,9 +80,18 @@
 	#{/if}
 
 
-
-
-   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<html> 
+<head> 
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+   <title>Google Maps API v3 Directions Example</title> 
+   <script type="text/javascript" 
+           src="http://maps.google.com/maps/api/js?sensor=false"></script>
+</head> 
+<body style="font-family: Arial; font-size: 12px;"> 
+   <div style="width: 600px;">
+     <div id="map" style="width: 880px; height: 600px; float: left;"></div> 
+     <div id="panel" style="width: 300px; float: right;"></div> 
+   </div>
 
    <script type="text/javascript"> 
 
@@ -109,10 +118,5 @@
        }
      });
    </script> 
-
-	<div style="width: 600px;">
-    	<div id="map" style="width: 880px; height: 600px; float: left;"></div> 
-    	<div id="panel" style="width: 300px; float: right;"></div> 
-	</div>
-
-	
+</body> 
+</html>
