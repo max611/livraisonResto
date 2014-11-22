@@ -581,5 +581,66 @@ public class Application extends Controller {
         render(listeCompte);
     }
     
+    public static void dropTables(){
+       
+        int i =0;
+        List<Commande> lc = Commande.findAll();
+        List<LignePanier> lp = LignePanier.findAll();
+        List<Menu> m = Menu.findAll();
+        List<Panier> pan = Panier.findAll();
+        List<Plats> p = Plats.findAll();
+        List<Restaurant> r = Restaurant.findAll();
+        List<Restaurateur> re = Restaurateur.findAll();
+        List<User> u = User.findAll();
+
+        while( i < lc.size() ) {
+        
+        lc.get(i).delete() ;
+        i++;
+      }i=0;
+         while( i < lp.size() ) {
+        
+        lp.get(i).delete() ;
+        i++;
+      }i=0;
+         while( i < m.size() ) {
+        
+        m.get(i).delete() ;
+        i++;
+      }i=0;
+         while( i < pan.size() ) {
+        
+        pan.get(i).delete() ;
+        i++;
+      }i=0;
+         while( i < p.size() ) {
+        
+        p.get(i).delete() ;
+        i++;
+      }i=0;
+         while( i < p.size() ) {
+        
+        p.get(i).delete() ;
+        i++;
+      }i=0;
+         while( i < r.size() ) {
+        
+        r.get(i).delete() ;
+        i++;
+      }i=0;
+         while( i < re.size() ) {
+        
+        re.get(i).delete() ;
+        i++;
+      }i=0;
+         while( i < u.size() ) {
+        
+        u.get(i).delete() ;
+        i++;
+      }i=0;
+
+        render();
+    }
+    
 }
 
