@@ -253,6 +253,7 @@ public class Application extends Controller {
         String lastname, String phonenumber, String restaurant) {
         User test = new User();
         test.username = username;
+        test.password = password;
         test.firstName = firstname;
         test.lastName = lastname;
         test.email = email;
@@ -280,10 +281,13 @@ public class Application extends Controller {
 
     public static void confirmationModificationRestaurateur(String username, String firstName, String lastName, String restaurant) {
         User resto = User.find("username, type",username,"Restaurateur").first();
+        Restaurant restau = Restaurant.find("name", restaurant).first();
+        restau.admin = username;
         resto.firstName = firstName;
         resto.lastName = lastName;
         resto.restaurant = restaurant;
         resto.save();
+        restau.save();
         render(resto);   
     }
 
@@ -361,7 +365,7 @@ public class Application extends Controller {
     }
     
     public static void saveAndAddCommandeMenu( String platName, int quantite) {
-        List<LignePanier> listePanier = LignePanier.findAll();
+       
         Plats p = Plats.find("name", platName).first();
         String menuName = p.menu;
         Menu m = Menu.find("name", p.menu).first();
@@ -377,6 +381,7 @@ public class Application extends Controller {
         newLigne.plats = platName;
         newLigne.quantite = quantite;
         newLigne.save();
+        List<LignePanier> listePanier = LignePanier.findAll();
 
         render(listePlat,r,listePanier);
     }
@@ -503,21 +508,17 @@ public class Application extends Controller {
 
     public static void admin(){
         List<Restaurant> listeRestau = Restaurant.findAll();
-        List<User> listeUser = User.findAll();
+        List<User> listeClient = User.find("type", "Client").asList();
+        List<User> listeRestaurateur = User.find("type", "Restaurateur").asList();
+        List<User> listeLivreur = User.find("type", "Livreur").asList();
+        List<User> listeAdmin = User.find("type", "Entrepreneur").asList();
         List<Adresse> listeAdresse = Adresse.findAll();
         List<Menu> listeMenu = Menu.findAll();
         List<Plats> listePlat = Plats.findAll();
         List<LignePanier> listeLignePanier = LignePanier.findAll();
         List<Panier> listePanier = Panier.findAll();
         List<Commande> listeCommande = Commande.findAll();
-        render(listeUser, listeRestau, listeMenu, listePlat, listeLignePanier, listePanier, listeCommande, listeAdresse);
-    }
-
-    public static void deleteLignePanier(){
-        List<User> listuser = User.findAll();
-        User u = listuser.get(0);
-        u.delete();
-        render();
+        render(listeClient, listeRestaurateur, listeLivreur, listeAdmin, listeRestau, listeMenu, listePlat, listeLignePanier, listePanier, listeCommande, listeAdresse);
     }
 
     public static void addAdressLivreur(){
@@ -542,6 +543,7 @@ public class Application extends Controller {
         Commande c = Commande.find("numConfirmation", numConfirmation).first();
         Logger.info("numConfirmation = " + c.numConfirmation );
         User client = User.find("username", c.user).first();
+
         SimpleEmail email = new SimpleEmail();
         try{
             email.setFrom("sender@zenexity.fr");
@@ -563,8 +565,10 @@ public class Application extends Controller {
         Commande c = Commande.find("numConfirmation", numConfirmation).first();
         c.statut = statut;
         c.save();
+        Boolean estlivree = false;
+        if(c.statut.isEqual("Livrée")) estlivree = true;
 
-        render(user, c);
+        render(user, c, estlivree);
     }
 
     public static void map(){
@@ -590,8 +594,8 @@ public class Application extends Controller {
         List<Panier> pan = Panier.findAll();
         List<Plats> p = Plats.findAll();
         List<Restaurant> r = Restaurant.findAll();
-        List<Restaurateur> re = Restaurateur.findAll();
         List<User> u = User.findAll();
+        List<Adresse> ad = Adresse.findAll();
 
         while( i < lc.size() ) {
         
@@ -628,14 +632,14 @@ public class Application extends Controller {
         r.get(i).delete() ;
         i++;
       }i=0;
-         while( i < re.size() ) {
-        
-        re.get(i).delete() ;
-        i++;
-      }i=0;
          while( i < u.size() ) {
         
         u.get(i).delete() ;
+        i++;
+      }i=0;
+       while( i < ad.size() ) {
+        
+        ad.get(i).delete() ;
         i++;
       }i=0;
 
