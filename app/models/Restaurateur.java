@@ -30,4 +30,9 @@ public class Restaurateur extends play.modules.morphia.Model
         this.phonenumber = phonenumber;
         this.restaurant = restaurant;
     }
+
+	public static Restaurateur connect(String firstName, String restaurant) {
+
+		return find("byfirstNameAndRestaurant", firstName, restaurant).first();
+	}
 }

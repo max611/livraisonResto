@@ -13,5 +13,10 @@ public String restoName;
 public Menu(){
 	
 }
+//contructeur
+public Menu(String name, String restoName){
+	this.name=name;
+	this.restoName=restoName;	
+}
 
 }

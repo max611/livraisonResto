@@ -90,7 +90,8 @@
 <body style="font-family: Arial; font-size: 12px;"> 
    <div style="width: 600px;">
      <div id="map" style="width: 880px; height: 600px; float: left;"></div> 
-     <div id="panel" style="width: 300px; float: right;"></div> 
+     <div id="panel" style="width: 300px; float: right;"></div>
+     <div id="directions_panel" style="width: 300px; float: left;"></div> 
    </div>
 
    <script type="text/javascript"> 
@@ -105,8 +106,11 @@
 
      directionsDisplay.setMap(map);
      directionsDisplay.setPanel(document.getElementById('panel'));
+     directionsDisplay.setPanel(document.getElementById('directions_panel'));
 
      var request = {
+    		 
+    		 optimizeWaypoints: true, <!-- jb-->
        origin: '${c.adresseRestaurant}', 
        destination: '${c.adressLivraison}',
        travelMode: google.maps.DirectionsTravelMode.DRIVING
@@ -115,6 +119,25 @@
      directionsService.route(request, function(response, status) {
        if (status == google.maps.DirectionsStatus.OK) {
          directionsDisplay.setDirections(response);
+         alert('ok debut')
+         
+         var route = response.routes[0];
+         alert('ok debut 1')
+         var summaryPanel = document.getElementById("directions_panel");
+         summaryPanel.innerHTML = "";
+         
+        
+         // For each route, display summary information.
+         for (var i = 0; i < route.legs.length; i++) {
+        	 
+           var routeSegment = i+1;
+           summaryPanel.innerHTML += "<b>Route Segment: " + routeSegment + "</b><br />";
+           summaryPanel.innerHTML += route.legs[i].start_address + " to ";
+           summaryPanel.innerHTML += route.legs[i].end_address + "<br />";
+           summaryPanel.innerHTML += route.legs[i].distance.text + "<br /><br />";
+           alert('ok debut 2')
+         }
+         alert('ok fin')
        }
      });
    </script> 

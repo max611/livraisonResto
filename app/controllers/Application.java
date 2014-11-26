@@ -545,10 +545,10 @@ public class Application extends Controller {
         SimpleEmail email = new SimpleEmail();
         try{
             email.setFrom("sender@zenexity.fr");
-            email.addTo(client.email);
+            //email.addTo(client.email); //jb
             email.setSubject("Evolution de votre commande");
             email.setMsg("Votre commande est maintenant "+ c.statut);
-            Mail.send(email); 
+            //Mail.send(email); //jb
         } catch (EmailException e) {
             e.printStackTrace();
         }
