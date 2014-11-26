@@ -11,8 +11,10 @@
 		#{if estlivree}
 		Cette commande a été déjà livrée par un autre livreur.
 		#{/if}
+		#{else}
+			<h1>La commande est ${c.statut}</h1>
+		#{/else}
+		<a class="btn btn-primary btn-lg" role="button" href="/Application/index">Retour au menu principal</a>
 	#{/if}
-	#{else}
-		<h1>La commande est ${c.statut}</h1>
-	#{/else}
+
 </div>

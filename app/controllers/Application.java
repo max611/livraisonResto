@@ -559,14 +559,15 @@ public class Application extends Controller {
     }
 
     public static void confirmationCommande(String numConfirm, String statut){
+        Boolean estlivree = false;
         User user = User.find("username", session.get("username")).first();
         int numConfirmation = Integer.parseInt(numConfirm);
         Logger.info("numConfirmation = " + numConfirm );
         Commande c = Commande.find("numConfirmation", numConfirmation).first();
+        if(c.statut.equals("Livrée")) {estlivree = true;}
         c.statut = statut;
         c.save();
-        Boolean estlivree = false;
-        if(c.statut.isEqual("Livrée")) estlivree = true;
+        
 
         render(user, c, estlivree);
     }
