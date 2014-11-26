@@ -5,13 +5,13 @@
 <div class="main container-fluid">
 	<h1>Donnée de MongoDB</h1>
 	<div class="form-group row">
-		<label class="col-sm-1">Utilisateurs</label>
+		<label class="col-sm-1">Clients</label>
 		<div class="col-sm-11">
 			<div class="row">
 				<div class="col-sm-2">
 					<ul>
 						<li><strong>Username</strong></li>
-						#{list listeUser, as:'user'}
+						#{list listeClient, as:'user'}
 						<li>${user.username}</li>
 						#{/list}
 					</ul>
@@ -19,7 +19,7 @@
 				<div class="col-sm-2">
 					<ul>
 						<li><strong>First Name</strong></li>
-						#{list listeUser, as:'user'}
+						#{list listeClient, as:'user'}
 						<li>${user.firstName}</li>
 						#{/list}
 					</ul>
@@ -27,7 +27,7 @@
 				<div class="col-sm-2">
 					<ul>
 						<li><strong>Last Name</strong></li>
-						#{list listeUser, as:'user'}
+						#{list listeClient, as:'user'}
 						<li>${user.lastName}</li>
 						#{/list}
 					</ul>
@@ -35,7 +35,7 @@
 				<div class="col-sm-2">
 					<ul>
 						<li><strong>Password</strong></li>
-						#{list listeUser, as:'user'}
+						#{list listeClient, as:'user'}
 						<li>${user.password}</li>
 						#{/list}
 					</ul>
@@ -43,24 +43,181 @@
 				<div class="col-sm-2">
 					<ul>
 						<li><strong>Email</strong></li>
-						#{list listeUser, as:'user'}
+						#{list listeClient, as:'user'}
 						<li>${user.email}</li>
 						#{/list}
 					</ul>
 				</div>
 				<div class="col-sm-2">
 					<ul>
-						<li><strong>Phone Number</strong></li>
-						#{list listeUser, as:'user'}
+						<li><strong>Phone</strong></li>
+						#{list listeClient, as:'user'}
 						<li>${user.phonenumber}</li>
+						#{/list}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1">Restaurateurs</label>
+		<div class="col-sm-11">
+			<div class="row">
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Username</strong></li>
+						#{list listeRestaurateur, as:'user'}
+						<li>${user.username}</li>
 						#{/list}
 					</ul>
 				</div>
 				<div class="col-sm-2">
 					<ul>
-						<li><strong>Type</strong></li>
-						#{list listeUser, as:'user'}
-						<li>${user.type}</li>
+						<li><strong>First Name</strong></li>
+						#{list listeRestaurateur, as:'user'}
+						<li>${user.firstName}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Last Name</strong></li>
+						#{list listeRestaurateur, as:'user'}
+						<li>${user.lastName}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Password</strong></li>
+						#{list listeRestaurateur, as:'user'}
+						<li>${user.password}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Email</strong></li>
+						#{list listeRestaurateur, as:'user'}
+						<li>${user.email}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Phone</strong></li>
+						#{list listeRestaurateur, as:'user'}
+						<li>${user.phonenumber}</li>
+						#{/list}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1">Livreurs</label>
+		<div class="col-sm-11">
+			<div class="row">
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Username</strong></li>
+						#{list listeLivreur, as:'user'}
+						<li>${user.username}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>First Name</strong></li>
+						#{list listeLivreur, as:'user'}
+						<li>${user.firstName}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Last Name</strong></li>
+						#{list listeLivreur, as:'user'}
+						<li>${user.lastName}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Password</strong></li>
+						#{list listeLivreur, as:'user'}
+						<li>${user.password}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Email</strong></li>
+						#{list listeLivreur, as:'user'}
+						<li>${user.email}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Phone</strong></li>
+						#{list listeLivreur, as:'user'}
+						<li>${user.phonenumber}</li>
+						#{/list}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1">Entrepreneur</label>
+		<div class="col-sm-11">
+			<div class="row">
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Username</strong></li>
+						#{list listeAdmin, as:'user'}
+						<li>${user.username}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>First Name</strong></li>
+						#{list listeAdmin, as:'user'}
+						<li>${user.firstName}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Last Name</strong></li>
+						#{list listeAdmin, as:'user'}
+						<li>${user.lastName}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Password</strong></li>
+						#{list listeAdmin, as:'user'}
+						<li>${user.password}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Email</strong></li>
+						#{list listeAdmin, as:'user'}
+						<li>${user.email}</li>
+						#{/list}
+					</ul>
+				</div>
+				<div class="col-sm-2">
+					<ul>
+						<li><strong>Phone</strong></li>
+						#{list listeAdmin, as:'user'}
+						<li>${user.phonenumber}</li>
 						#{/list}
 					</ul>
 				</div>
@@ -233,9 +390,9 @@
 		<label class="col-sm-1">Commande</label>
 		<div class="col-sm-11">
 			<div class="row">
-				<div class="col-sm-2">
+				<div class="col-sm-1">
 					<ul>
-						<li><strong>numConfirmation</strong></li>
+						<li><strong>numConf</strong></li>
 						#{list listeCommande, as:'commande'}
 						<li>${commande.numConfirmation}</li>
 						#{/list}
@@ -265,7 +422,7 @@
 						#{/list}
 					</ul>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<ul>
 						<li><strong>statut</strong></li>
 						#{list listeCommande, as:'commande'}
@@ -273,7 +430,7 @@
 						#{/list}
 					</ul>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<ul>
 						<li><strong>user</strong></li>
 						#{list listeCommande, as:'commande'}
