@@ -547,10 +547,10 @@ public class Application extends Controller {
         SimpleEmail email = new SimpleEmail();
         try{
             email.setFrom("sender@zenexity.fr");
-            //email.addTo(client.email); //jb
+            email.addTo(client.email);
             email.setSubject("Evolution de votre commande");
             email.setMsg("Votre commande est maintenant "+ c.statut);
-            //Mail.send(email); //jb
+            Mail.send(email); 
         } catch (EmailException e) {
             e.printStackTrace();
         }
@@ -568,7 +568,6 @@ public class Application extends Controller {
         c.statut = statut;
         c.save();
         
-
         render(user, c, estlivree);
     }
 
