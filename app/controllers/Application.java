@@ -95,22 +95,19 @@ public class Application extends Controller {
     }
 
 
-    public static void formulaire(Boolean lang) {
-        if (lang == null) lang = false;
+    public static void formulaire() {
         List listeCompte = new ArrayList();
         listeCompte.add("Client");
         listeCompte.add("Restaurateur");
         listeCompte.add("Livreur");
 
-        if(lang){
-            String language = play.i18n.Lang.get();
-            Logger.info("language : " + language);
-            if (language.equals("en")){
-                play.i18n.Lang.change("fr");
-            }
-            else{
-                play.i18n.Lang.change("en");
-            }
+        String language = play.i18n.Lang.get();
+        Logger.info("language : " + language);
+        if (language.equals("en")){
+            play.i18n.Lang.change("fr");
+        }
+        else{
+            play.i18n.Lang.change("en");
         }
         render(listeCompte);
     }
@@ -550,10 +547,10 @@ public class Application extends Controller {
         SimpleEmail email = new SimpleEmail();
         try{
             email.setFrom("sender@zenexity.fr");
-            //email.addTo(client.email); //jb
+            email.addTo(client.email);
             email.setSubject("Evolution de votre commande");
             email.setMsg("Votre commande est maintenant "+ c.statut);
-            //Mail.send(email); //jb
+            Mail.send(email); 
         } catch (EmailException e) {
             e.printStackTrace();
         }
