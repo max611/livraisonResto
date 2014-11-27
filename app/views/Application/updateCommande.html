@@ -91,7 +91,16 @@
          directionsDisplay.setDirections(response);
        }
      });
-   </script> 
+   </script>
+
+ 	<script type="text/javascript">
+   	var traceParcoursBus = new google.maps.Polyline({
+		path: parcoursBus,//chemin du tracé
+		strokeColor: "#FF0000",//couleur du tracé
+		strokeOpacity: 1.0,//opacité du tracé
+		strokeWeight: 2//grosseur du tracé
+	});
+   </script>
 	#{/if}
 
 	#{if user.type == "Restaurateur"}

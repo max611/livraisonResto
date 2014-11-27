@@ -95,19 +95,22 @@ public class Application extends Controller {
     }
 
 
-    public static void formulaire() {
+    public static void formulaire(Boolean lang) {
+        if (lang == null) lang = false;
         List listeCompte = new ArrayList();
         listeCompte.add("Client");
         listeCompte.add("Restaurateur");
         listeCompte.add("Livreur");
 
-        String language = play.i18n.Lang.get();
-        Logger.info("language : " + language);
-        if (language.equals("en")){
-            play.i18n.Lang.change("fr");
-        }
-        else{
-            play.i18n.Lang.change("en");
+        if(lang){
+            String language = play.i18n.Lang.get();
+            Logger.info("language : " + language);
+            if (language.equals("en")){
+                play.i18n.Lang.change("fr");
+            }
+            else{
+                play.i18n.Lang.change("en");
+            }
         }
         render(listeCompte);
     }
@@ -568,7 +571,6 @@ public class Application extends Controller {
         c.statut = statut;
         c.save();
         
-
         render(user, c, estlivree);
     }
 
