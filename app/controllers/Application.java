@@ -528,21 +528,22 @@ public class Application extends Controller {
     public static void gestionCommande(String adresse){
         User user = User.find("username", session.get("username") ).first();
         Adresse ad = Adresse.find("user", user.username).first();
-        //ad.adresse = adresse;
-        //ad.save();
+        ad.adresse = adresse;
+        ad.save();
 
         List<Commande> listeCommandeprete = Commande.find("statut", "Prête").asList();
         List<Commande> listeCommandepreparation = Commande.find("statut", "En préparation").asList();
-        render(user, listeCommandeprete, listeCommandepreparation);
+        render(user, listeCommandeprete, listeCommandepreparation, ad);
     }
 
-    public static void updateCommande(String commandeNum){
+    public static void updateCommande(String commandeNum, String adresse){
         User user = User.find("username", session.get("username")).first();
         int numConfirmation = Integer.parseInt(commandeNum);
         Logger.info("numConfirmation = " + commandeNum );
         Commande c = Commande.find("numConfirmation", numConfirmation).first();
         Logger.info("numConfirmation = " + c.numConfirmation );
         User client = User.find("username", c.user).first();
+        String ad = adresse;
 
         SimpleEmail email = new SimpleEmail();
         try{
@@ -554,8 +555,7 @@ public class Application extends Controller {
         } catch (EmailException e) {
             e.printStackTrace();
         }
-       
-        render(c, user);
+        render(c, user, ad);
     }
 
     public static void confirmationCommande(String numConfirm, String statut){
