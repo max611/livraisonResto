@@ -24,4 +24,9 @@ public class Restaurant extends play.modules.morphia.Model
         this.description = description;
     }
 
+	public static Restaurant connect(String name, String admin) {
+
+		return find("byfirstNameAndAdmin", name, admin).first();
+	}
+
 }

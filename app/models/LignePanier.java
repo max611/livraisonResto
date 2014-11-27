@@ -32,5 +32,12 @@ public class LignePanier extends play.modules.morphia.Model
 		this.menuName = menuName;
 		this.quantite = quantite;
 	}*/
-
+	public LignePanier(String plats, int quantite){
+		this.plats=plats;
+		this.quantite=quantite;
+	}
+	// contructeur par defaut
+	public LignePanier(){
+		
+	}
 }
